@@ -1,0 +1,31 @@
+User-agent: *
+Allow: /
+Disallow: /data/
+
+# Optimize for AI Search & Answer Engines
+User-agent: GPTBot
+Allow: /
+Disallow: /data/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /data/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /data/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /data/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /data/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /data/
+
+Sitemap: https://codehtml.in/sitemap.xml
+

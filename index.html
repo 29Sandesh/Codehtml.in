@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/Codehtml.logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeHTML | Premium Custom Software & Web Development Studio</title>
+    <meta name="description" content="CodeHTML is a premium digital engineering studio. We build elite custom websites, web apps, custom SaaS platforms, and iOS & Android mobile applications." />
+    <meta name="author" content="CodeHTML" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="theme-color" content="#c5a880" />
+    <meta name="rating" content="general" />
+    <script>
+      (function() {
+        var path = window.location.pathname === '/' ? '' : window.location.pathname.replace(/\/$/, '');
+        var currentUrl = 'https://codehtml.in' + path;
+        var canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical) canonical.setAttribute('href', currentUrl);
+        var ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.setAttribute('content', currentUrl);
+        var twitterUrl = document.querySelector('meta[name="twitter:url"]');
+        if (twitterUrl) twitterUrl.setAttribute('content', currentUrl);
+      })();
+    </script>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://codehtml.in/" />
+    <meta property="og:site_name" content="CodeHTML" />
+    <meta property="og:title" content="CodeHTML | Premium Custom Software & Web Development Studio" />
+    <meta property="og:description" content="CodeHTML is a premium digital engineering studio. We build elite custom websites, web apps, custom SaaS platforms, and iOS & Android mobile applications." />
+    <meta property="og:image" content="https://codehtml.in/hero-section-img.webp" />
+
+    <!-- AEO / GEO / AIO (Generative Engine Optimization) Meta Tags -->
+    <meta name="publisher" content="CodeHTML" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="format-detection" content="telephone=yes" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://codehtml.in/" />
+    <meta name="twitter:title" content="CodeHTML | Premium Custom Software & Web Development Studio" />
+    <meta name="twitter:description" content="CodeHTML is a premium digital engineering studio. We build elite custom websites, web apps, custom SaaS platforms, and iOS & Android mobile applications." />
+    <meta name="twitter:image" content="https://codehtml.in/hero-section-img.webp" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://zconrjsxnqqgvkolhwfai.supabase.co" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Cormorant+Garamond:ital,wght@1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Google tag (gtag.js) - Gated by Cookie Consent -->
+    <script>
+      function initGA() {
+        if (window.gaInitialized) return;
+        window.gaInitialized = true;
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-L9P4R401EY';
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-L9P4R401EY', { 'anonymize_ip': true });
+        window.gtag = gtag;
+      }
+
+      window.initGA = initGA;
+
+      if (localStorage.getItem('cookieConsent') === 'accepted') {
+        initGA();
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

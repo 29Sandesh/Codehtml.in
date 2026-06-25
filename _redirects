@@ -1,0 +1,26 @@
+# Services redirects
+/service/custom-website-development     /services/corporate-websites 301
+/service/web-application-development    /services/custom-web-applications 301
+/service/saas-development               /products/erp-system 301
+/service/mobile-app-development         /services/mobile-apps 301
+/service/ai-automation                  /ai-solutions/ai-voice-chatbots 301
+/service/startup-launch-services        /services/digital-transformation-strategy 301
+/service/growth-digital-presence        /get-more-customers/website-seo 301
+
+# Sectors redirects
+/sector/real-estate                     /products/crm-system 301
+/sector/hospitality                     /products/booking-system 301
+/sector/professional-services           /services/corporate-websites 301
+/sector/e-commerce                      /products/online-store 301
+/sector/healthcare                      /products/hospital-system 301
+/sector/tech-startups                   /products/erp-system 301
+/sector/luxury-rentals                  /products/fleet-management 301
+/sector/family-offices                  /services/corporate-websites 301
+
+# Misc redirects
+/tools                                  / 301
+/services/saas-development              /products/erp-system 301
+/services/custom-software-development   /services/corporate-websites 301
+
+# SPA fallback
+/*                                      /index.html 200

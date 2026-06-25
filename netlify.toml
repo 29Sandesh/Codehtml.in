@@ -1,0 +1,28 @@
+[build]
+  command = "npm run build && node tools/prerender-mega-pages.js --limit=50000 && node generate-sitemap-massive.js"
+  publish = "dist"
+
+[context.production]
+  environment = { NODE_VERSION = "20", NODE_OPTIONS = "--max-old-space-size=8192" }
+
+# Simple redirects - handled by public/_redirects already but kept as fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Access-Control-Allow-Origin = "*"
+    X-Robots-Tag = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

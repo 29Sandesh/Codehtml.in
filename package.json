@@ -1,0 +1,40 @@
+{
+  "name": "radical-agency-web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3000",
+    "build": "node tools/split-all-data.js && node generate-sitemap.js && vite build",
+    "postbuild": "node prerender.js",
+    "preview": "vite preview",
+    "generate:cities": "node tools/generate-city-database.js",
+    "extract:keywords": "node tools/extract-bible-keywords.js",
+    "generate:mega": "node tools/generate-mega-pages.js",
+    "prerender:mega": "node tools/prerender-mega-pages.js",
+    "prerender:mega:test": "node tools/prerender-mega-pages.js --limit=500",
+    "sitemap:mega": "node generate-sitemap-massive.js",
+    "build:domination": "npm run build && npm run generate:mega && npm run prerender:mega && npm run sitemap:mega",
+    "build:domination:test": "npm run build && npm run generate:mega && npm run prerender:mega:test"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@supabase/supabase-js": "^2.108.2",
+    "framer-motion": "^11.0.24",
+    "lucide-react": "^0.363.0",
+    "pdfkit": "^0.19.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.19",
+    "fluent-ffmpeg": "^2.1.3",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.2.0"
+  }
+}

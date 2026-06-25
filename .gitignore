@@ -1,0 +1,53 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/dist
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# editor settings
+.vscode/
+.idea/
+*.suo
+*.ntvsca*
+*.njsproj
+*.sln
+*.sw?
+
+# generated data files (created during build)
+/public/data/cities/
+/public/data/blogs/
+/public/data/growth/
+/public/data/blogList.json
+/public/data/cityList.json
+/public/data/growthList.json
+/public/data/mega-chunks/
+/public/data/mega-domination-manifest.json
+
+# generated sitemaps
+/public/sitemap*.xml
+
+# temporary / scratch directories
+/scratch/
+/*.zip
+
+# Google API credentials
+/google-key.json
