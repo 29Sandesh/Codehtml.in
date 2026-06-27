@@ -1,63 +1,25 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { Lock, ShieldAlert, Mail } from 'lucide-react';
+import { Lock, ShieldAlert } from 'lucide-react';
 import SEO from '../../components/SEO';
 
 export default function AdminLogin() {
-  const [email, setEmail] = useState('');
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
-  const { loginAdmin, loginAdminWithGoogle } = useAuth();
+  const { loginAdminWithGoogle } = useAuth();
   const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const cleanEmail = email.trim().toLowerCase();
-    if (!cleanEmail) {
-      setError('Email address is required.');
-      return;
-    }
-    if (cleanEmail !== '29sandesh.agrawal@gmail.com') {
-      setError('Access Denied: This email is not registered as an administrator.');
-      return;
-    }
-
-    setLoading(true);
-    setError('');
-    setSuccess('');
-
-    try {
-      const res = await loginAdmin(cleanEmail);
-      setLoading(false);
-      if (res.success) {
-        if (res.offline) {
-          // If offline mock mode, navigate immediately
-          navigate('/admin');
-        } else {
-          setSuccess(res.message || 'Magic login link sent! Please check your email inbox.');
-        }
-      } else {
-        setError(res.error || 'Failed to request magic login link.');
-      }
-    } catch (err) {
-      setLoading(false);
-      setError(err.message || 'An error occurred.');
-    }
-  };
 
   const handleGoogleLogin = async () => {
     setLoading(true);
     setError('');
-    setSuccess('');
     try {
       const res = await loginAdminWithGoogle();
       if (res && res.success) {
         if (res.offline) {
           navigate('/admin');
         } else {
-          setSuccess('Connecting to Google...');
+          // Redirecting to Google Auth
         }
       } else {
         setLoading(false);
@@ -94,80 +56,33 @@ export default function AdminLogin() {
             Security Gateway
           </h2>
           <p className="mt-2 text-center text-sm text-zinc-400">
-            Authorized admin access only. Connection is encrypted.
+            Authorized admin access only. Click below to authenticate.
           </p>
         </div>
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md z-10 px-4 sm:px-0">
           <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-800/60 py-8 px-6 shadow-2xl rounded-2xl sm:px-10">
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div>
-                <label 
-                  htmlFor="email" 
-                  className="block text-xs font-semibold uppercase tracking-wider text-zinc-400"
-                >
-                  Administrator Email
-                </label>
-                <div className="mt-2 relative rounded-xl shadow-sm">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-500">
-                    <Mail className="h-4 w-4" />
+            
+            {error && (
+              <div className="rounded-xl bg-red-500/10 border border-red-500/30 p-4 mb-6">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <ShieldAlert className="h-5 w-5 text-red-400" />
                   </div>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="block w-full pl-10 py-3 bg-zinc-950 border border-zinc-800/60 rounded-xl text-white placeholder-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/80 transition duration-150 sm:text-sm font-sans"
-                    placeholder="29sandesh.agrawal@gmail.com"
-                  />
-                </div>
-              </div>
-
-              {error && (
-                <div className="rounded-xl bg-red-500/10 border border-red-500/30 p-4">
-                  <div className="flex">
-                    <div className="flex-shrink-0">
-                      <ShieldAlert className="h-5 w-5 text-red-400" />
-                    </div>
-                    <div className="ml-3">
-                      <p className="text-sm font-medium text-red-400">
-                        {error}
-                      </p>
-                    </div>
+                  <div className="ml-3">
+                    <p className="text-sm font-medium text-red-400">
+                      {error}
+                    </p>
                   </div>
                 </div>
-              )}
-
-              {success && (
-                <div className="rounded-xl bg-emerald-500/10 border border-emerald-500/30 p-4 text-sm font-medium text-emerald-400 text-center">
-                  {success}
-                </div>
-              )}
-
-              <div>
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-xl shadow-lg text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-950 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-[0.98] transition-all duration-150"
-                >
-                  {loading ? 'Verifying...' : 'Send Magic Login Link'}
-                </button>
               </div>
-            </form>
-
-            <div className="relative flex py-4 items-center">
-              <div className="flex-grow border-t border-zinc-800"></div>
-              <span className="flex-shrink mx-4 text-[10px] text-zinc-500 font-bold uppercase tracking-wider">or</span>
-              <div className="flex-grow border-t border-zinc-800"></div>
-            </div>
+            )}
 
             <button
               type="button"
               onClick={handleGoogleLogin}
               disabled={loading}
-              className="w-full py-3.5 rounded-xl border border-white/10 hover:border-blue-500/50 bg-zinc-950 hover:bg-zinc-900 text-white font-semibold text-sm tracking-wide transition-all duration-300 inline-flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+              className="w-full py-4 rounded-xl border border-white/10 hover:border-blue-500/50 bg-zinc-950 hover:bg-zinc-900 text-white font-semibold text-sm tracking-wide transition-all duration-300 inline-flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer shadow-lg hover:shadow-blue-500/5"
             >
               <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24">
                 <path
@@ -187,7 +102,7 @@ export default function AdminLogin() {
                   d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
                 />
               </svg>
-              Sign In with Google
+              {loading ? 'Connecting...' : 'Sign In with Google'}
             </button>
           </div>
           <div className="mt-6 text-center">
