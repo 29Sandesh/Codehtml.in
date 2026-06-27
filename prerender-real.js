@@ -148,23 +148,30 @@ function startServer() {
 // ──────────────────────────────────────────────────────────────────────────
 async function prerender() {
   let browser;
+  const launchOptions = {
+    headless: 'new',
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
+      '--disable-web-security',
+    ],
+  };
+
   try {
-    browser = await puppeteer.launch({
-      headless: 'new',
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-gpu',
-        '--disable-web-security',
-      ],
-    });
+    browser = await puppeteer.launch(launchOptions);
   } catch (launchErr) {
-    console.warn('\n⚠️  Puppeteer could not launch a browser. Skipping real prerendering.');
-    console.warn('   Reason:', launchErr.message);
-    console.warn('   This is expected on environments without Chrome (e.g. some CI/CD).');
-    console.warn('   Placeholder prerendering from prerender.js is still in place.\n');
-    return;
+    console.log('⚠️ Failed to launch downloaded browser. Attempting to use system Chrome...');
+    try {
+      browser = await puppeteer.launch({ ...launchOptions, channel: 'chrome' });
+    } catch (sysErr) {
+      console.warn('\n⚠️  Puppeteer could not launch any browser. Skipping real prerendering.');
+      console.warn('   Reason:', sysErr.message);
+      console.warn('   This is expected on environments without Chrome (e.g. some CI/CD).');
+      console.warn('   Placeholder prerendering from prerender.js is still in place.\n');
+      return;
+    }
   }
 
   console.log(`\n🎭 Rendering ${routes.length} routes with Puppeteer...\n`);

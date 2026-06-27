@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build && node tools/prerender-mega-pages.js --limit=50000 && node prerender-real.js && node generate-sitemap-massive.js"
+  command = "npx puppeteer browsers install chrome && npm run build && node tools/prerender-mega-pages.js --limit=50000 && node prerender-real.js && node generate-sitemap-massive.js"
   publish = "dist"
 
 [context.production]

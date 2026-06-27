@@ -27,4 +27,5 @@
 /partner/dashboard                      /index.html 200
 
 # All other routes are served from static prerendered files in dist/
-# Netlify netlify.toml handles unmatched routes with force=false fallback
+# Netlify falls back to the SPA shell below if no static file matches
+/*                                      /index.html 200
