@@ -1227,7 +1227,7 @@ const Home = ({ cityName = '', cityCategory = '', cityData = null }) => {
             <div className="pt-4">
               <Link 
                 to="/about"
-                className="inline-flex items-center gap-2 bg-vintage-gold hover:bg-white text-black font-body font-bold text-xs uppercase tracking-wider px-6 py-4 transition-all rounded-none cursor-pointer border border-vintage-gold hover:border-white"
+                className="inline-flex items-center gap-2 bg-vintage-gold text-white font-body font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-none cursor-pointer border border-vintage-gold"
               >
                 Discover Our DNA ➲
               </Link>
