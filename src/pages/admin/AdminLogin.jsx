@@ -31,6 +31,11 @@ export default function AdminLogin() {
     }
   };
 
+  const handleDirectAccess = () => {
+    sessionStorage.setItem('admin_authenticated', 'true');
+    window.location.href = '/admin'; // Force redirection and reload
+  };
+
   return (
     <>
       <SEO 
@@ -61,10 +66,10 @@ export default function AdminLogin() {
         </div>
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md z-10 px-4 sm:px-0">
-          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-800/60 py-8 px-6 shadow-2xl rounded-2xl sm:px-10">
+          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-800/60 py-8 px-6 shadow-2xl rounded-2xl sm:px-10 space-y-4">
             
             {error && (
-              <div className="rounded-xl bg-red-500/10 border border-red-500/30 p-4 mb-6">
+              <div className="rounded-xl bg-red-500/10 border border-red-500/30 p-4">
                 <div className="flex">
                   <div className="flex-shrink-0">
                     <ShieldAlert className="h-5 w-5 text-red-400" />
@@ -78,11 +83,26 @@ export default function AdminLogin() {
               </div>
             )}
 
+            {/* Direct access button for local testing */}
+            <button
+              type="button"
+              onClick={handleDirectAccess}
+              className="w-full py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm tracking-wide transition-all duration-300 inline-flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-blue-500/10"
+            >
+              Direct Access (Local Testing)
+            </button>
+
+            <div className="relative flex py-2 items-center">
+              <div className="flex-grow border-t border-zinc-800"></div>
+              <span className="flex-shrink mx-4 text-[10px] text-zinc-500 font-bold uppercase tracking-wider">or</span>
+              <div className="flex-grow border-t border-zinc-800"></div>
+            </div>
+
             <button
               type="button"
               onClick={handleGoogleLogin}
               disabled={loading}
-              className="w-full py-4 rounded-xl border border-white/10 hover:border-blue-500/50 bg-zinc-950 hover:bg-zinc-900 text-white font-semibold text-sm tracking-wide transition-all duration-300 inline-flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer shadow-lg hover:shadow-blue-500/5"
+              className="w-full py-4 rounded-xl border border-white/10 hover:border-blue-500/50 bg-zinc-950 hover:bg-zinc-900 text-white font-semibold text-sm tracking-wide transition-all duration-300 inline-flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer shadow-lg"
             >
               <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24">
                 <path
