@@ -38,6 +38,15 @@ export function AuthProvider({ children }) {
             const email = googleUser.email.toLowerCase().trim();
             const name = googleUser.user_metadata?.full_name || googleUser.email;
 
+            // Check if this is the authorized admin email
+            if (email === '29sandesh.agrawal@gmail.com') {
+              sessionStorage.setItem('admin_authenticated', 'true');
+              setUser({ email, name: name || 'Sandesh (Admin)' });
+              setRole('admin');
+              setLoading(false);
+              return;
+            }
+
             // Check if partner exists in database
             let partner = await db.getPartner(email);
 
@@ -154,16 +163,56 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-  const loginAdmin = (adminId, password) => {
-    const cleanId = (adminId || '').trim();
-    if (cleanId === 'SandeshAdmin' && password === 'Admin2904') {
+  const loginAdmin = async (email) => {
+    const cleanEmail = (email || '').trim().toLowerCase();
+    if (cleanEmail === '29sandesh.agrawal@gmail.com') {
+      if (supabase) {
+        try {
+          const { error } = await supabase.auth.signInWithOtp({
+            email: cleanEmail,
+            options: {
+              emailRedirectTo: window.location.origin + '/admin'
+            }
+          });
+          if (error) throw error;
+          return { success: true, message: 'Magic login link sent to your email! Please check your inbox.' };
+        } catch (err) {
+          console.error("Admin Magic Link request failed:", err);
+          return { success: false, error: err.message || 'Failed to send login link.' };
+        }
+      } else {
+        // Fallback for offline mode
+        sessionStorage.setItem('admin_authenticated', 'true');
+        const adminUser = { email: cleanEmail, name: 'Sandesh (Admin)' };
+        setUser(adminUser);
+        setRole('admin');
+        return { success: true, offline: true, user: adminUser };
+      }
+    }
+    return { success: false, error: 'Access Denied: This email is not registered as an administrator.' };
+  };
+
+  const loginAdminWithGoogle = async () => {
+    if (!supabase) {
       sessionStorage.setItem('admin_authenticated', 'true');
-      const adminUser = { email: 'admin@codehtml.in', name: 'Sandesh (Admin)' };
+      const adminUser = { email: '29sandesh.agrawal@gmail.com', name: 'Sandesh (Admin)' };
       setUser(adminUser);
       setRole('admin');
-      return { success: true, user: adminUser };
+      return { success: true, offline: true };
     }
-    return { success: false, error: 'Incorrect admin ID or password.' };
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: window.location.origin + '/admin'
+        }
+      });
+      if (error) throw error;
+      return { success: true };
+    } catch (err) {
+      console.error("Admin Google login failed:", err);
+      return { success: false, error: err.message || 'Google Auth failed.' };
+    }
   };
 
   const loginPartner = async (email, password) => {
@@ -242,6 +291,7 @@ export function AuthProvider({ children }) {
     role,
     loading,
     loginAdmin,
+    loginAdminWithGoogle,
     loginPartner,
     loginPartnerWithGoogle,
     logout,
