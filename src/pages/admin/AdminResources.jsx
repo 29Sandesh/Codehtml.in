@@ -112,7 +112,12 @@ export default function AdminResources() {
         isGated,
         isPaid,
         price: isPaid ? Number(price || 0) : 0,
-        links: links.map(l => ({ label: l.label.trim(), url: l.url.trim() }))
+        links: links.map(l => ({ 
+          label: l.label.trim(), 
+          url: l.url.trim(),
+          isPaid: !!l.isPaid,
+          price: l.isPaid ? Number(l.price || 0) : 0
+        }))
       };
 
       if (isEditing === 'new') {
@@ -292,7 +297,7 @@ export default function AdminResources() {
                 </span>
                 <button
                   type="button"
-                  onClick={() => setLinks([...links, { label: '', url: '' }])}
+                  onClick={() => setLinks([...links, { label: '', url: '', isPaid: false, price: 0 }])}
                   className="px-2.5 py-1 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-white rounded-lg text-[10px] font-bold transition flex items-center gap-1 cursor-pointer"
                 >
                   <Plus className="h-3 w-3" />
@@ -333,6 +338,45 @@ export default function AdminResources() {
                           placeholder="Subheading Download URL"
                           className="block w-full px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium text-[11px] focus:outline-none focus:ring-1 focus:ring-blue-500"
                         />
+
+                        {/* Individual Subheading Lock */}
+                        <div className="flex items-center gap-4 pt-1">
+                          <label className="flex items-center gap-1.5 text-[10px] font-bold text-slate-500 cursor-pointer select-none">
+                            <input
+                              type="checkbox"
+                              checked={link.isPaid || false}
+                              onChange={(e) => {
+                                const newLinks = [...links];
+                                newLinks[idx].isPaid = e.target.checked;
+                                if (!e.target.checked) {
+                                  newLinks[idx].price = 0;
+                                }
+                                setLinks(newLinks);
+                              }}
+                              className="h-3.5 w-3.5 text-blue-600 border-slate-300 rounded cursor-pointer"
+                            />
+                            <span>Lock with Payment</span>
+                          </label>
+
+                          {(link.isPaid) && (
+                            <div className="flex items-center gap-1">
+                              <span className="text-[10px] font-bold text-slate-400">₹</span>
+                              <input
+                                type="number"
+                                min="1"
+                                required={link.isPaid}
+                                value={link.price || ''}
+                                onChange={(e) => {
+                                  const newLinks = [...links];
+                                  newLinks[idx].price = Math.max(0, parseInt(e.target.value) || 0);
+                                  setLinks(newLinks);
+                                }}
+                                placeholder="Price"
+                                className="w-16 px-1.5 py-0.5 bg-white border border-slate-200 rounded text-slate-750 font-bold text-[10px] focus:outline-none focus:ring-1 focus:ring-blue-500"
+                              />
+                            </div>
+                          )}
+                        </div>
                       </div>
                       <button
                         type="button"

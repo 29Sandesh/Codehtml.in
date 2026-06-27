@@ -118,7 +118,7 @@ const Resources = () => {
     };
   }, []);
 
-  const triggerRazorpayPayment = async (res) => {
+  const triggerRazorpayPayment = async (unlockId, title, price, targetUrl) => {
     const keyId = import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_T6Z8WjCBVAQGvW';
 
     if (!window.Razorpay) {
@@ -128,7 +128,7 @@ const Resources = () => {
 
     try {
       // 1. Create order on the backend (Netlify function)
-      const amountPaise = Number(res.price || 0) * 100;
+      const amountPaise = Number(price || 0) * 100;
       if (amountPaise < 100) {
         alert("Minimum payment amount is 1 INR (100 paise).");
         return;
@@ -141,7 +141,7 @@ const Resources = () => {
         },
         body: JSON.stringify({
           amount: amountPaise,
-          receipt: `rcpt_${res.id}_${Date.now()}`
+          receipt: `rcpt_${unlockId.replace('_', '-')}_${Date.now()}`
         })
       });
 
@@ -159,7 +159,7 @@ const Resources = () => {
         currency: orderData.currency,
         order_id: orderData.order_id,
         name: 'CodeHTML Resources',
-        description: `Unlock ${res.title}`,
+        description: `Unlock ${title}`,
         image: 'https://codehtml.in/Codehtml.logo.png',
         handler: async function (response) {
           try {
@@ -182,12 +182,12 @@ const Resources = () => {
             }
 
             // Verification successful! Save unlock state
-            const updatedList = [...unlockedPaidIds, res.id];
+            const updatedList = [...unlockedPaidIds, unlockId];
             setUnlockedPaidIds(updatedList);
             localStorage.setItem('paid_unlocked_resources', JSON.stringify(updatedList));
 
             alert('Payment successful! Resource unlocked.');
-            window.open(res.url, '_blank');
+            window.open(targetUrl, '_blank');
           } catch (verifyErr) {
             console.error(verifyErr);
             alert(`Payment verification error: ${verifyErr.message}`);
@@ -219,26 +219,57 @@ const Resources = () => {
     }
   };
 
-  const handleLinkClick = (e, res) => {
+  const handleLinkClick = (e, parentRes, link = null, idx = null) => {
     e.preventDefault();
-    setSelectedResource(res);
     
-    // 1. If resource requires payment
-    if (res.isPaid) {
-      const isAlreadyUnlocked = unlockedPaidIds.includes(res.id);
-      if (isAlreadyUnlocked) {
-        window.open(res.url, '_blank');
-      } else {
-        triggerRazorpayPayment(res);
-      }
-      return;
-    }
+    if (link) {
+      // Subheading link clicked
+      setSelectedResource({ ...parentRes, url: link.url, title: `${parentRes.title} - ${link.label}` });
 
-    // 2. If resource is social gated
-    if (!res.isGated || isUnlocked || localStorage.getItem('social_unlocked') === 'true') {
-      window.open(res.url, '_blank');
+      const isSubPaid = !!link.isPaid;
+      const subUnlockId = `${parentRes.id}_${idx}`;
+      
+      const isParentPaidLocked = parentRes.isPaid && !unlockedPaidIds.includes(parentRes.id);
+      const isSubPaidLocked = isSubPaid && !unlockedPaidIds.includes(subUnlockId);
+
+      if (isParentPaidLocked) {
+        triggerRazorpayPayment(parentRes.id, parentRes.title, parentRes.price, link.url);
+        return;
+      }
+      
+      if (isSubPaidLocked) {
+        triggerRazorpayPayment(subUnlockId, `${parentRes.title} - ${link.label}`, link.price, link.url);
+        return;
+      }
+
+      // Check social gate
+      const isSocialGatedLocked = parentRes.isGated && !isUnlocked && localStorage.getItem('social_unlocked') !== 'true';
+      if (isSocialGatedLocked) {
+        setShowModal(true);
+      } else {
+        window.open(link.url, '_blank');
+      }
     } else {
-      setShowModal(true);
+      // Main resource clicked
+      setSelectedResource(parentRes);
+
+      if (parentRes.isPaid) {
+        const isAlreadyUnlocked = unlockedPaidIds.includes(parentRes.id);
+        if (isAlreadyUnlocked) {
+          window.open(parentRes.url, '_blank');
+        } else {
+          triggerRazorpayPayment(parentRes.id, parentRes.title, parentRes.price, parentRes.url);
+        }
+        return;
+      }
+
+      // Check social gate
+      const isSocialGatedLocked = parentRes.isGated && !isUnlocked && localStorage.getItem('social_unlocked') !== 'true';
+      if (isSocialGatedLocked) {
+        setShowModal(true);
+      } else {
+        window.open(parentRes.url, '_blank');
+      }
     }
   };
 
@@ -309,37 +340,50 @@ const Resources = () => {
                     </span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {res.links.map((link, idx) => (
-                      <a
-                        key={idx}
-                        href={link.url}
-                        onClick={(e) => handleLinkClick(e, { ...res, url: link.url, title: `${res.title} - ${link.label}` })}
-                        className="flex items-center justify-between p-3.5 bg-zinc-900/30 hover:bg-zinc-900 border border-white/5 hover:border-vintage-gold/20 rounded-xl transition-all group/sub font-body text-xs text-zinc-350 hover:text-white"
-                      >
-                        <div className="flex items-center gap-2">
-                          {isPaidLocked ? (
-                            <Lock className="w-3 h-3 text-blue-400" />
-                          ) : isSocialGatedLocked ? (
-                            <Lock className="w-3 h-3 text-vintage-gold/80" />
-                          ) : (res.isPaid || res.isGated) ? (
-                            <Unlock className="w-3 h-3 text-emerald-500" />
-                          ) : null}
-                          <span className="font-medium tracking-wide group-hover/sub:text-vintage-gold transition-colors">
-                            {link.label}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          {res.isPaid && (
-                            <span className="px-1.5 py-0.5 bg-blue-950/40 border border-blue-900/30 rounded text-[8px] font-bold text-blue-400 tracking-wider">
-                              {isPaidLocked ? `₹${res.price}` : 'PAID'}
+                    {res.links.map((link, idx) => {
+                      const isSubPaid = !!link.isPaid;
+                      const subUnlockId = `${res.id}_${idx}`;
+                      const isParentPaidLocked = res.isPaid && !unlockedPaidIds.includes(res.id);
+                      const isSubPaidLocked = isSubPaid && !unlockedPaidIds.includes(subUnlockId);
+                      const isSpecificPaidLocked = isParentPaidLocked || isSubPaidLocked;
+
+                      return (
+                        <a
+                          key={idx}
+                          href={link.url}
+                          onClick={(e) => handleLinkClick(e, res, link, idx)}
+                          className="flex items-center justify-between p-3.5 bg-zinc-900/30 hover:bg-zinc-900 border border-white/5 hover:border-vintage-gold/20 rounded-xl transition-all group/sub font-body text-xs text-zinc-350 hover:text-white"
+                        >
+                          <div className="flex items-center gap-2">
+                            {isSpecificPaidLocked ? (
+                              <Lock className="w-3 h-3 text-blue-400" />
+                            ) : isSocialGatedLocked ? (
+                              <Lock className="w-3 h-3 text-vintage-gold/80" />
+                            ) : (res.isPaid || isSubPaid || res.isGated) ? (
+                              <Unlock className="w-3 h-3 text-emerald-500" />
+                            ) : null}
+                            <span className="font-medium tracking-wide group-hover/sub:text-vintage-gold transition-colors">
+                              {link.label}
                             </span>
-                          )}
-                          <span className="text-zinc-600 group-hover/sub:text-vintage-gold text-[10px] font-bold transition-all">
-                            ➲
-                          </span>
-                        </div>
-                      </a>
-                    ))}
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {isSubPaid && (
+                              <span className="px-1.5 py-0.5 bg-blue-950/40 border border-blue-900/30 rounded text-[8px] font-bold text-blue-400 tracking-wider">
+                                {isSubPaidLocked ? `₹${link.price}` : 'PAID'}
+                              </span>
+                            )}
+                            {res.isPaid && !isSubPaid && (
+                              <span className="px-1.5 py-0.5 bg-blue-950/40 border border-blue-900/30 rounded text-[8px] font-bold text-blue-400 tracking-wider">
+                                {isParentPaidLocked ? `₹${res.price}` : 'PAID'}
+                              </span>
+                            )}
+                            <span className="text-zinc-600 group-hover/sub:text-vintage-gold text-[10px] font-bold transition-all">
+                              ➲
+                            </span>
+                          </div>
+                        </a>
+                      );
+                    })}
                   </div>
                 </div>
               );
