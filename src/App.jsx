@@ -75,6 +75,16 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 const CompetitorAlternative = lazy(() => import('./pages/CompetitorAlternative'))
 const WebDevDubaiPillar = lazy(() => import('./pages/WebDevDubaiPillar'))
 
+// New SEO-optimized landing pages
+const DubaiWebDevelopment = lazy(() => import('./pages/DubaiWebDevelopment'))
+const DubaiMobileAppDevelopment = lazy(() => import('./pages/DubaiMobileAppDevelopment'))
+const AppDeveloperNearMeDubai = lazy(() => import('./pages/AppDeveloperNearMeDubai'))
+const CaseStudySwigato = lazy(() => import('./pages/CaseStudySwigato'))
+const CaseStudyAlayaRealty = lazy(() => import('./pages/CaseStudyAlayaRealty'))
+const CaseStudySLCC = lazy(() => import('./pages/CaseStudySLCC'))
+const AboutCodeHTML = lazy(() => import('./pages/AboutCodeHTML'))
+const HTMLDevelopmentServices = lazy(() => import('./pages/HTMLDevelopmentServices'))
+
 // Component to scroll window to top on route change and persist referral codes
 function ScrollToTop() {
   const { pathname, search } = useLocation();
@@ -305,6 +315,16 @@ function App() {
                 <Route path="/:competitor-alternative" element={<CompetitorAlternative />} />
                 <Route path="/webcastle-alternative" element={<CompetitorAlternative />} />
                 <Route path="/web-development-dubai-guide" element={<WebDevDubaiPillar />} />
+                
+                {/* New High-Impact SEO Landing Pages */}
+                <Route path="/dubai-web-development" element={<DubaiWebDevelopment />} />
+                <Route path="/dubai-mobile-app-development" element={<DubaiMobileAppDevelopment />} />
+                <Route path="/app-developer-near-me-dubai" element={<AppDeveloperNearMeDubai />} />
+                <Route path="/case-study/swigato" element={<CaseStudySwigato />} />
+                <Route path="/case-study/alaya-realty" element={<CaseStudyAlayaRealty />} />
+                <Route path="/case-study/slcc" element={<CaseStudySLCC />} />
+                <Route path="/about-codehtml" element={<AboutCodeHTML />} />
+                <Route path="/html-development-services" element={<HTMLDevelopmentServices />} />
                 
                 {/* Locations Page */}
                 <Route path="/locations" element={<Locations />} />

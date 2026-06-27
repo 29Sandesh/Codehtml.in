@@ -36,7 +36,13 @@ const staticRoutes = [
   '/clinic-website-design-dubai',
   '/real-estate-website-design-dubai',
   '/web-development-dubai-guide',
-  '/website-cost-in-dubai'
+  '/website-cost-in-dubai',
+  // NEW HIGH-IMPACT SEO PAGES
+  '/dubai-web-development',
+  '/dubai-mobile-app-development',
+  '/app-developer-near-me-dubai',
+  '/about-codehtml',
+  '/html-development-services'
 ];
 
 function buildSitemapXml(urls) {
@@ -137,6 +143,11 @@ async function generate() {
       images: [portfolioImages[id]]
     });
   });
+
+  // NEW: Case Study Pages
+  staticUrls.push({ path: '/case-study/swigato', priority: '0.85', changefreq: 'monthly' });
+  staticUrls.push({ path: '/case-study/alaya-realty', priority: '0.85', changefreq: 'monthly' });
+  staticUrls.push({ path: '/case-study/slcc', priority: '0.85', changefreq: 'monthly' });
 
   fs.writeFileSync(path.join(publicDir, 'sitemap-static.xml'), buildSitemapXml(staticUrls), 'utf8');
   console.log(`✓ Written public/sitemap-static.xml (${staticUrls.length} URLs)`);
