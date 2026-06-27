@@ -59,6 +59,8 @@ export default function PartnerDashboard() {
   // Onboarding / Complete Profile Modal State
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [phoneInput, setPhoneInput] = useState('');
+  const [partnerTypeInput, setPartnerTypeInput] = useState('solo');
+  const [cityInput, setCityInput] = useState('');
   const [agencyNameInput, setAgencyNameInput] = useState('');
   const [agencySizeInput, setAgencySizeInput] = useState('2-5');
   const [agencyWebsiteInput, setAgencyWebsiteInput] = useState('');
@@ -68,6 +70,8 @@ export default function PartnerDashboard() {
     if (!partner) return;
     setUpiInput(partner.upiId || '');
     setPhoneInput(partner.phone || '');
+    setPartnerTypeInput(partner.partnerType || 'solo');
+    setCityInput(partner.signupCity || '');
     setAgencyNameInput(partner.agencyName || '');
     setAgencySizeInput(partner.agencySize || '2-5');
     setAgencyWebsiteInput(partner.agencyWebsite || '');
@@ -104,19 +108,17 @@ export default function PartnerDashboard() {
     setTimeout(() => setCopiedState(false), 2000);
   };
 
-  const handleAcceptTerms = async (e) => {
+  const handleUpdateUPI = async (e) => {
     e.preventDefault();
     if (!upiInput.trim()) return;
 
     try {
-      await db.updatePartner(partner.email, {
-        termsAccepted: true,
-        upiId: upiInput.trim()
-      });
+      await db.updatePartner(partner.email, { upiId: upiInput.trim() });
       await refreshUser();
-      setShowTermsModal(false);
+      alert("UPI ID updated successfully!");
     } catch (err) {
-      alert("Failed to update profile settings");
+      console.error(err);
+      alert("Failed to update UPI ID.");
     }
   };
 
@@ -126,8 +128,12 @@ export default function PartnerDashboard() {
       alert("Mobile number is required.");
       return;
     }
-    if (partner.partnerType === 'agency' && !agencyNameInput.trim()) {
+    if (partnerTypeInput === 'agency' && !agencyNameInput.trim()) {
       alert("Agency Name is required.");
+      return;
+    }
+    if (!cityInput.trim()) {
+      alert("Location / City is required.");
       return;
     }
     if (!acceptOnboardingTerms) {
@@ -139,12 +145,18 @@ export default function PartnerDashboard() {
       const updates = {
         phone: phoneInput.trim(),
         upiId: upiInput.trim(),
+        partnerType: partnerTypeInput,
+        signupCity: cityInput.trim() || 'Global',
         termsAccepted: true
       };
 
-      if (partner.partnerType === 'agency') {
+      if (partnerTypeInput === 'agency') {
         updates.agencyName = agencyNameInput.trim();
         updates.agencySize = agencySizeInput;
+        updates.agencyWebsite = agencyWebsiteInput.trim();
+      } else {
+        updates.agencyName = null;
+        updates.agencySize = null;
         updates.agencyWebsite = agencyWebsiteInput.trim();
       }
 
@@ -834,6 +846,21 @@ Best regards,
               </p>
 
               <form onSubmit={handleCompleteProfileSubmit} className="space-y-4">
+                {/* Partner Tier Field */}
+                <div>
+                  <label className="block font-body text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-1.5">
+                    Partner Tier <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    value={partnerTypeInput}
+                    onChange={(e) => setPartnerTypeInput(e.target.value)}
+                    className="w-full px-4 py-3 bg-black border border-white/10 rounded-xl font-body text-xs text-white focus:outline-none focus:border-vintage-gold/50 appearance-none cursor-pointer"
+                  >
+                    <option value="solo" className="bg-black">Freelancer / Solo Professional</option>
+                    <option value="agency" className="bg-black">Digital Agency</option>
+                  </select>
+                </div>
+
                 {/* Phone Number Field */}
                 <div>
                   <label className="block font-body text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-1.5">
@@ -849,13 +876,43 @@ Best regards,
                   />
                 </div>
 
-                {/* UPI ID Field */}
+                {/* Location Field */}
                 <div>
                   <label className="block font-body text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-1.5">
-                    UPI ID (For Commission Payouts)
+                    City / Location of Operations <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
+                    required
+                    placeholder="e.g. Dubai, UAE"
+                    value={cityInput}
+                    onChange={(e) => setCityInput(e.target.value)}
+                    className="w-full px-4 py-3 bg-black border border-white/10 rounded-xl font-body text-xs text-white focus:outline-none focus:border-vintage-gold/50 placeholder:text-zinc-700"
+                  />
+                </div>
+
+                {/* Website URL Field */}
+                <div>
+                  <label className="block font-body text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-1.5">
+                    Website or Portfolio Link
+                  </label>
+                  <input
+                    type="url"
+                    placeholder="e.g. https://portfolio.com"
+                    value={agencyWebsiteInput}
+                    onChange={(e) => setAgencyWebsiteInput(e.target.value)}
+                    className="w-full px-4 py-3 bg-black border border-white/10 rounded-xl font-body text-xs text-white focus:outline-none focus:border-vintage-gold/50 placeholder:text-zinc-700"
+                  />
+                </div>
+
+                {/* UPI ID Field */}
+                <div>
+                  <label className="block font-body text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-1.5">
+                    UPI ID (For Commission Payouts) <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
                     placeholder="e.g. yourname@okaxis"
                     value={upiInput}
                     onChange={(e) => setUpiInput(e.target.value)}
@@ -864,7 +921,7 @@ Best regards,
                 </div>
 
                 {/* Conditional Agency Fields */}
-                {partner.partnerType === 'agency' && (
+                {partnerTypeInput === 'agency' && (
                   <div className="space-y-4 border-l border-vintage-gold/20 pl-3.5 my-3">
                     <div>
                       <label className="block font-body text-[10px] font-bold text-vintage-gold uppercase tracking-widest mb-1.5">
@@ -872,7 +929,7 @@ Best regards,
                       </label>
                       <input
                         type="text"
-                        required={partner.partnerType === 'agency'}
+                        required={partnerTypeInput === 'agency'}
                         placeholder="e.g. Pixel Studio"
                         value={agencyNameInput}
                         onChange={(e) => setAgencyNameInput(e.target.value)}
@@ -880,34 +937,20 @@ Best regards,
                       />
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <label className="block font-body text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-1.5">
-                          Agency Size
-                        </label>
-                        <select
-                          value={agencySizeInput}
-                          onChange={(e) => setAgencySizeInput(e.target.value)}
-                          className="w-full px-4 py-3 bg-black border border-white/10 rounded-xl font-body text-xs text-white focus:outline-none focus:border-vintage-gold/50 appearance-none cursor-pointer"
-                        >
-                          <option value="2-5">2-5 members</option>
-                          <option value="6-15">6-15 members</option>
-                          <option value="16-50">16-50 members</option>
-                          <option value="50+">50+ members</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block font-body text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-1.5">
-                          Agency Website
-                        </label>
-                        <input
-                          type="url"
-                          placeholder="e.g. https://agency.com"
-                          value={agencyWebsiteInput}
-                          onChange={(e) => setAgencyWebsiteInput(e.target.value)}
-                          className="w-full px-4 py-3 bg-black border border-white/10 rounded-xl font-body text-xs text-white focus:outline-none focus:border-vintage-gold/50 placeholder:text-zinc-700"
-                        />
-                      </div>
+                    <div>
+                      <label className="block font-body text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-1.5">
+                        Agency Size
+                      </label>
+                      <select
+                        value={agencySizeInput}
+                        onChange={(e) => setAgencySizeInput(e.target.value)}
+                        className="w-full px-4 py-3 bg-black border border-white/10 rounded-xl font-body text-xs text-white focus:outline-none focus:border-vintage-gold/50 appearance-none cursor-pointer"
+                      >
+                        <option value="2-5" className="bg-black">2-5 members</option>
+                        <option value="6-15" className="bg-black">6-15 members</option>
+                        <option value="16-50" className="bg-black">16-50 members</option>
+                        <option value="50+" className="bg-black">50+ members</option>
+                      </select>
                     </div>
                   </div>
                 )}
