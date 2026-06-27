@@ -240,7 +240,7 @@ export default function AdminResources() {
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-slate-300 rounded cursor-pointer"
                   />
                   <label htmlFor="gatedCheck" className="text-xs font-bold text-slate-600 cursor-pointer select-none">
-                    Require LinkedIn Follow
+                    Require Social Follows (LinkedIn, Instagram, YouTube)
                   </label>
                 </div>
               </div>

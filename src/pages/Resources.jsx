@@ -415,26 +415,54 @@ const Resources = () => {
                 <div className="w-12 h-12 bg-vintage-gold/10 border border-vintage-gold/30 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Lock className="w-5 h-5 text-vintage-gold animate-bounce" />
                 </div>
-                <h3 className="font-headline font-extrabold text-lg uppercase text-white tracking-wide">Follow to Unlock Link</h3>
+                <h3 className="font-headline font-extrabold text-lg uppercase text-white tracking-wide">Follow to Unlock</h3>
                 <p className="font-body text-zinc-400 text-xs mt-2 leading-relaxed">
-                  To unlock the direct link for <strong className="text-vintage-gold">"{selectedResource?.title}"</strong>, please follow on LinkedIn:
+                  To unlock the direct link for <strong className="text-vintage-gold">"{selectedResource?.title}"</strong>, please connect with us on social media:
                 </p>
               </div>
 
               {/* Social Follow Links */}
-              <div className="space-y-4 mb-6">
+              <div className="space-y-3 mb-6">
                 {/* LinkedIn Link */}
                 <a
                   href="https://www.linkedin.com/company/codehtml"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-4 bg-[#0077B5]/10 hover:bg-[#0077B5]/20 border border-[#0077B5]/30 hover:border-[#0077B5]/50 rounded-xl transition-all font-body text-sm text-white font-bold group"
+                  className="flex items-center justify-between p-3 bg-[#0077B5]/10 hover:bg-[#0077B5]/20 border border-[#0077B5]/20 hover:border-[#0077B5]/40 rounded-xl transition-all font-body text-xs text-white font-bold group"
                 >
-                  <div className="flex items-center gap-3">
-                    <Linkedin className="w-5 h-5 text-[#0077B5] group-hover:scale-110 transition-transform" />
+                  <div className="flex items-center gap-2.5">
+                    <Linkedin className="w-4 h-4 text-[#0077B5] group-hover:scale-110 transition-transform" />
                     <span>Follow on LinkedIn</span>
                   </div>
-                  <span className="text-[10px] tracking-widest text-[#0077B5] uppercase font-mono">CODEHTML</span>
+                  <span className="text-[9px] tracking-wider text-[#0077B5]/85 uppercase font-mono">CODEHTML</span>
+                </a>
+
+                {/* Instagram Link */}
+                <a
+                  href="https://www.instagram.com/sandesh29_/?hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-3 bg-[#E1306C]/10 hover:bg-[#E1306C]/20 border border-[#E1306C]/20 hover:border-[#E1306C]/40 rounded-xl transition-all font-body text-xs text-white font-bold group"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <Instagram className="w-4 h-4 text-[#E1306C] group-hover:scale-110 transition-transform" />
+                    <span>Follow on Instagram</span>
+                  </div>
+                  <span className="text-[9px] tracking-wider text-[#E1306C]/85 uppercase font-mono">SANDESH29_</span>
+                </a>
+
+                {/* YouTube Link */}
+                <a
+                  href="https://www.youtube.com/@sandeshyaar"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-3 bg-[#FF0000]/10 hover:bg-[#FF0000]/20 border border-[#FF0000]/20 hover:border-[#FF0000]/40 rounded-xl transition-all font-body text-xs text-white font-bold group"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <Youtube className="w-4 h-4 text-[#FF0000] group-hover:scale-110 transition-transform" />
+                    <span>Subscribe on YouTube</span>
+                  </div>
+                  <span className="text-[9px] tracking-wider text-[#FF0000]/85 uppercase font-mono">SANDESHYAAR</span>
                 </a>
               </div>
 
