@@ -25,6 +25,8 @@ export default function AdminResources() {
   const [url, setUrl] = useState('');
   const [category, setCategory] = useState('Developer Tool');
   const [isGated, setIsGated] = useState(false);
+  const [isPaid, setIsPaid] = useState(false);
+  const [price, setPrice] = useState(0);
   const [links, setLinks] = useState([]); // Dynamic list of { label: '', url: '' }
 
   useEffect(() => {
@@ -55,6 +57,8 @@ export default function AdminResources() {
     setUrl('');
     setCategory('Developer Tool');
     setIsGated(false);
+    setIsPaid(false);
+    setPrice(0);
     setLinks([]);
   };
 
@@ -64,7 +68,9 @@ export default function AdminResources() {
     setTitle(res.title);
     setUrl(res.url || '');
     setCategory(res.category);
-    setIsGated(res.isGated);
+    setIsGated(res.isGated || false);
+    setIsPaid(res.isPaid || false);
+    setPrice(res.price || 0);
     setLinks(res.links ? JSON.parse(JSON.stringify(res.links)) : []);
   };
 
@@ -104,6 +110,8 @@ export default function AdminResources() {
         url: finalUrl,
         category,
         isGated,
+        isPaid,
+        price: isPaid ? Number(price || 0) : 0,
         links: links.map(l => ({ label: l.label.trim(), url: l.url.trim() }))
       };
 
@@ -223,7 +231,12 @@ export default function AdminResources() {
                     type="checkbox"
                     id="gatedCheck"
                     checked={isGated}
-                    onChange={(e) => setIsGated(e.target.checked)}
+                    onChange={(e) => {
+                      setIsGated(e.target.checked);
+                      if (e.target.checked) {
+                        setIsPaid(false);
+                      }
+                    }}
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-slate-300 rounded cursor-pointer"
                   />
                   <label htmlFor="gatedCheck" className="text-xs font-bold text-slate-600 cursor-pointer select-none">
@@ -231,6 +244,44 @@ export default function AdminResources() {
                   </label>
                 </div>
               </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-slate-100 pt-4 mt-2">
+              <div>
+                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Paid Lock (Razorpay)</label>
+                <div className="flex items-center gap-3 h-10 px-4 bg-slate-50 border border-slate-200 rounded-xl">
+                  <input
+                    type="checkbox"
+                    id="paidCheck"
+                    checked={isPaid}
+                    onChange={(e) => {
+                      setIsPaid(e.target.checked);
+                      if (e.target.checked) {
+                        setIsGated(false);
+                      }
+                    }}
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-slate-300 rounded cursor-pointer"
+                  />
+                  <label htmlFor="paidCheck" className="text-xs font-bold text-slate-600 cursor-pointer select-none">
+                    Require Payment to Unlock
+                  </label>
+                </div>
+              </div>
+
+              {isPaid && (
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Price (INR)</label>
+                  <input
+                    type="number"
+                    min="1"
+                    required={isPaid}
+                    value={price}
+                    onChange={(e) => setPrice(Math.max(0, parseInt(e.target.value) || 0))}
+                    placeholder="e.g. 99"
+                    className="block w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-700 font-bold text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                  />
+                </div>
+              )}
             </div>
 
             {/* Subheading Links Section */}
@@ -368,23 +419,22 @@ export default function AdminResources() {
                         }
                       </td>
                       <td className="px-6 py-4">
-                        <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
-                          res.isGated 
-                            ? 'bg-amber-50 text-amber-600 border border-amber-100' 
-                            : 'bg-emerald-50 text-emerald-600 border border-emerald-100'
-                        }`}>
-                          {res.isGated ? (
-                            <>
-                              <Lock className="h-3 w-3 text-amber-500" />
-                              <span>Gated</span>
-                            </>
-                          ) : (
-                            <>
-                              <Unlock className="h-3 w-3 text-emerald-500" />
-                              <span>Free</span>
-                            </>
-                          )}
-                        </span>
+                        {res.isPaid ? (
+                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-600 border border-blue-100">
+                            <Lock className="h-3 w-3 text-blue-500" />
+                            <span>₹{res.price} (Paid)</span>
+                          </span>
+                        ) : res.isGated ? (
+                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-600 border border-amber-100">
+                            <Lock className="h-3 w-3 text-amber-500" />
+                            <span>Gated</span>
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-600 border border-emerald-100">
+                            <Unlock className="h-3 w-3 text-emerald-500" />
+                            <span>Free</span>
+                          </span>
+                        )}
                       </td>
                       <td className="px-6 py-4 text-right">
                         <div className="flex items-center justify-end gap-2">

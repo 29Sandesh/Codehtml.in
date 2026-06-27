@@ -1,6 +1,7 @@
 [build]
   command = "npx puppeteer browsers install chrome && npm run build && node tools/prerender-mega-pages.js --limit=50000 && node prerender-real.js && node generate-sitemap-massive.js"
   publish = "dist"
+  functions = "netlify/functions"
 
 [context.production]
   environment = { NODE_VERSION = "20", NODE_OPTIONS = "--max-old-space-size=8192" }

@@ -671,6 +671,8 @@ class DatabaseService {
       url: resourceData.url,
       category: resourceData.category || 'Developer Tool',
       isGated: resourceData.isGated || false,
+      isPaid: resourceData.isPaid || false,
+      price: Number(resourceData.price || 0),
       links: resourceData.links || []
     };
 

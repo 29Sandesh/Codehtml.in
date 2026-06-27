@@ -1,0 +1,249 @@
+import React from 'react';
+import SEO from '../components/SEO';
+import { Link } from 'react-router-dom';
+import { ArrowRight, ExternalLink, Smartphone, Globe, Zap, Clock, Users, Star, CheckCircle, TrendingUp, Code, Server, Shield, Building2 } from 'lucide-react';
+
+const CaseStudyAlayaRealty = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Alaya Realty — Real Estate Portal Built by CodeHTML Dubai | 0.7s Load",
+    "description": "Alaya Realty is a real estate portal built by CodeHTML in Dubai. React-based frontend, property search, 3D virtual tours, 0.7s load time. See the full case study.",
+    "image": "https://codehtml.in/luxury_dubai_villa.webp",
+    "author": {
+      "@type": "Organization",
+      "name": "CodeHTML"
+    }
+  };
+
+  const breadcrumbs = [
+    { name: "Home", item: "/" },
+    { name: "Case Studies", item: "/case-study/01" },
+    { name: "Alaya Realty", item: "/case-study/alaya-realty" }
+  ];
+
+  return (
+    <div className="bg-black min-h-screen text-white font-sans">
+      <SEO
+        title="Alaya Realty — Real Estate Portal Built by CodeHTML Dubai | 0.7s Load"
+        description="Alaya Realty is a real estate portal built by CodeHTML in Dubai. React-based frontend, property search, 3D virtual tours, 0.7s load time. See the full case study."
+        image="https://codehtml.in/luxury_dubai_villa.webp"
+        schema={schema}
+        breadcrumbs={breadcrumbs}
+      />
+
+      {/* Decorative blur blobs */}
+      <div className="absolute top-20 right-1/4 w-96 h-96 bg-brand-gold/5 blur-[120px] rounded-full pointer-events-none z-0" />
+      <div className="absolute bottom-40 left-1/4 w-80 h-80 bg-brand-gold/5 blur-[120px] rounded-full pointer-events-none z-0" />
+
+      {/* ─── HERO ─── */}
+      <section className="pt-32 pb-20 px-6 lg:px-8 border-b border-white/10 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-wrap items-center gap-3 mb-6">
+            <span className="text-brand-gold font-bold text-xs tracking-widest px-4 py-2 border border-brand-gold/30 rounded-full uppercase">
+              Case Study
+            </span>
+            <span className="text-zinc-500 text-xs tracking-widest uppercase">Client: Alaya Realty</span>
+          </div>
+
+          <h1 className="font-outfit font-extrabold text-4xl md:text-6xl lg:text-7xl tracking-tight leading-[1.1] mb-6">
+            Alaya Realty — <span className="text-brand-gold">Premium</span> Real Estate Portal
+          </h1>
+
+          <p className="text-zinc-400 text-lg md:text-xl max-w-3xl leading-relaxed mb-10">
+            A high-performance real estate platform built for the UAE property market. Designed to showcase luxury properties with immersive visuals, instant search, and bilingual support that converts browsers into buyers.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-6 mb-10">
+            <div className="flex items-center gap-2 text-sm text-zinc-400">
+              <Globe className="w-4 h-4 text-brand-gold" />
+              <span>Live URL: <span className="text-white font-medium">alayarealty.in</span></span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { label: 'Platform Type', value: 'Real Estate Portal', icon: Building2 },
+              { label: 'Location', value: 'UAE', icon: Globe },
+              { label: 'Timeline', value: '2 Weeks', icon: Clock },
+              { label: 'Load Time', value: '0.7s', icon: Zap },
+            ].map((stat, idx) => (
+              <div key={idx} className="bg-zinc-900/50 p-5 rounded-2xl border border-white/5">
+                <stat.icon className="w-5 h-5 text-brand-gold mb-3" />
+                <div className="text-zinc-500 text-xs uppercase tracking-wider mb-1">{stat.label}</div>
+                <div className="text-white font-bold text-sm md:text-base">{stat.value}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CLIENT OVERVIEW ─── */}
+      <section className="py-20 px-6 lg:px-8 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-outfit font-bold text-3xl md:text-4xl mb-6">Client Overview</h2>
+          <p className="text-zinc-400 text-lg leading-relaxed">
+            Alaya Realty is a Dubai-based real estate agency specializing in luxury properties across the most prestigious districts of the UAE — Business Bay, Dubai Marina, Downtown Dubai, and Palm Jumeirah. Their portfolio includes penthouses, waterfront villas, and commercial spaces that demand a digital presence matching their premium positioning. In a market where first impressions are everything, Alaya Realty needed a platform that could instantly communicate exclusivity, trust, and sophistication.
+          </p>
+          <p className="text-zinc-400 text-lg leading-relaxed mt-4">
+            They needed a digital platform that could showcase high-end properties with immersive visuals, deliver instant search results across hundreds of listings, and provide a seamless experience for both Arabic and English-speaking clients. The UAE real estate market moves fast — properties are listed and leased within hours — so speed, reliability, and mobile accessibility were non-negotiable requirements.
+          </p>
+        </div>
+      </section>
+
+      {/* ─── CHALLENGE ─── */}
+      <section className="py-20 px-6 lg:px-8 border-y border-white/5 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-outfit font-bold text-3xl md:text-4xl mb-8">The Challenge</h2>
+          <div className="space-y-5">
+            {[
+              'Existing website was slow (5s+ load time) and losing leads — every second of delay cost potential high-value inquiries.',
+              'Need for advanced property search with granular filters: location, price range, bedrooms, bathrooms, amenities, and furnishing status.',
+              'High-resolution image galleries for luxury properties without performance degradation or layout shifts.',
+              'Arabic/English bilingual support for the UAE market, including full RTL layout for Arabic users.',
+              'Mobile-first design for on-the-go property browsing, since over 70% of UAE real estate searches happen on mobile devices.',
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-start gap-4">
+                <CheckCircle className="w-6 h-6 text-brand-gold flex-shrink-0 mt-0.5" />
+                <p className="text-zinc-400 text-lg leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SOLUTION ─── */}
+      <section className="py-20 px-6 lg:px-8 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-outfit font-bold text-3xl md:text-4xl mb-6">Our Solution</h2>
+          <p className="text-zinc-400 text-lg leading-relaxed mb-8">
+            CodeHTML reimagined Alaya Realty's digital presence from the ground up, building a platform that prioritizes speed, visual impact, and conversion. We engineered a React-based frontend with Next.js for server-side rendering, ensuring that search engines could crawl every property listing while users experienced sub-second page loads.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+            {[
+              { title: 'Instant Page Loads', desc: 'React + Next.js architecture with SSR for SEO and sub-second interactivity on every route.' },
+              { title: 'Optimized Image Pipeline', desc: 'Lazy loading, WebP conversion, and responsive srcsets for high-res galleries without the bloat.' },
+              { title: 'Advanced Search', desc: 'Instant filtering with debounced inputs, faceted navigation, and URL-persisted search state.' },
+              { title: 'Arabic RTL Support', desc: 'Full right-to-left layout, Arabic typography, and localized content management.' },
+              { title: 'Touch-Optimized Galleries', desc: 'Swipeable property galleries with pinch-to-zoom and smooth mobile interactions.' },
+              { title: 'Lead Capture', desc: 'WhatsApp routing, contact forms, and callback scheduling integrated into every listing.' },
+            ].map((card, idx) => (
+              <div key={idx} className="bg-zinc-900/50 p-6 rounded-2xl border border-white/5">
+                <h3 className="font-outfit font-bold text-lg text-white mb-2">{card.title}</h3>
+                <p className="text-zinc-400 text-sm leading-relaxed">{card.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="font-outfit font-bold text-xl mb-4">Technology Stack</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {['React', 'Next.js', 'Tailwind CSS', 'Node.js', 'MongoDB', 'AWS S3'].map((tech, idx) => (
+              <div key={idx} className="bg-zinc-900/50 p-4 rounded-xl border border-white/5 text-center">
+                <Code className="w-5 h-5 text-brand-gold mx-auto mb-2" />
+                <span className="text-sm font-bold text-white">{tech}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── RESULTS ─── */}
+      <section className="py-20 px-6 lg:px-8 border-y border-white/5 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-outfit font-bold text-3xl md:text-4xl mb-8">Results & Metrics</h2>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10">
+            {[
+              { value: '0.7s', label: 'Load Time', icon: Zap },
+              { value: '99', label: 'Lighthouse Score', icon: Star },
+              { value: '50%', label: 'Faster', icon: TrendingUp },
+              { value: 'AR + EN', label: 'Bilingual', icon: Globe },
+              { value: 'Mobile', label: 'First Design', icon: Smartphone },
+            ].map((stat, idx) => (
+              <div key={idx} className="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 text-center">
+                <stat.icon className="w-6 h-6 text-brand-gold mx-auto mb-3" />
+                <div className="font-outfit font-extrabold text-2xl md:text-3xl text-white mb-1">{stat.value}</div>
+                <div className="text-zinc-500 text-xs uppercase tracking-wider">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-zinc-900/50 p-8 rounded-2xl border border-white/5 relative">
+            <div className="absolute -top-3 left-8 text-brand-gold text-4xl font-serif">"</div>
+            <p className="text-zinc-300 text-lg leading-relaxed italic mt-2">
+              Our website loads faster than any competitor in Dubai. The leads have increased significantly since launch, and our clients constantly compliment the mobile experience. CodeHTML understood exactly what luxury real estate demands.
+            </p>
+            <p className="text-brand-gold font-bold mt-4">— Alaya Realty Team</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── TECH STACK GRID ─── */}
+      <section className="py-20 px-6 lg:px-8 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-outfit font-bold text-3xl md:text-4xl mb-8">Technology Stack</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {[
+              { name: 'React', role: 'Frontend Framework', icon: Code },
+              { name: 'Next.js', role: 'SSR & Routing', icon: Server },
+              { name: 'Tailwind CSS', role: 'Styling', icon: Zap },
+              { name: 'Node.js', role: 'Backend Runtime', icon: Server },
+              { name: 'MongoDB', role: 'Database', icon: Server },
+              { name: 'AWS S3', role: 'Image Storage', icon: Globe },
+            ].map((item, idx) => (
+              <div key={idx} className="bg-zinc-900/50 p-5 rounded-2xl border border-white/5 flex items-center gap-4">
+                <div className="w-10 h-10 rounded-lg bg-brand-gold/10 flex items-center justify-center flex-shrink-0">
+                  <item.icon className="w-5 h-5 text-brand-gold" />
+                </div>
+                <div>
+                  <div className="font-bold text-white">{item.name}</div>
+                  <div className="text-zinc-500 text-xs">{item.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── GALLERY ─── */}
+      <section className="py-20 px-6 lg:px-8 border-y border-white/5 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-outfit font-bold text-3xl md:text-4xl mb-8">Project Screenshots</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              '[Screenshot: Property Listing]',
+              '[Screenshot: Search Filters]',
+              '[Screenshot: Property Detail]',
+              '[Screenshot: Mobile View]',
+            ].map((label, idx) => (
+              <div key={idx} className="bg-zinc-800 h-48 rounded-xl flex items-center justify-center text-zinc-500 font-medium text-sm">
+                {label}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CTA ─── */}
+      <section className="py-20 px-6 lg:px-8 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="font-outfit font-bold text-3xl md:text-4xl mb-4">Need a Real Estate Website?</h2>
+          <p className="text-zinc-400 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+            We build high-performance real estate portals with advanced search, property management, and lead capture systems. Whether you are a boutique agency or a large developer, we deliver platforms that convert visitors into clients.
+          </p>
+          <a
+            href="https://wa.me/919303228082?text=Hi%20CodeHTML,%20I%20am%20interested%20in%20a%20real%20estate%20website%20like%20Alaya%20Realty."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-brand-gold text-black px-6 py-3 rounded-xl font-bold hover:bg-white transition-colors"
+          >
+            <span>Discuss Your Project</span>
+            <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default CaseStudyAlayaRealty;

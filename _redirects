@@ -26,6 +26,9 @@
 /admin/*                                /index.html 200
 /partner/dashboard                      /index.html 200
 
+# API routes mapped to serverless functions
+/api/*                                  /.netlify/functions/:splat 200
+
 # All other routes are served from static prerendered files in dist/
 # Netlify falls back to the SPA shell below if no static file matches
 /*                                      /index.html 200
