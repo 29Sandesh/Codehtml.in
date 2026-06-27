@@ -47,6 +47,18 @@ const routes = [
   '/real-estate-website-design-dubai',
   '/web-development-dubai-guide',
 
+  // NEW HIGH-IMPACT SEO LANDING PAGES
+  '/dubai-web-development',
+  '/dubai-mobile-app-development',
+  '/app-developer-near-me-dubai',
+  '/about-codehtml',
+  '/html-development-services',
+
+  // NEW CASE STUDY PAGES
+  '/case-study/swigato',
+  '/case-study/alaya-realty',
+  '/case-study/slcc',
+
   // Category overview pages
   '/products',
   '/ai-solutions',
@@ -54,49 +66,8 @@ const routes = [
   '/services',
 ];
 
-// Product detail pages
-Object.keys(PRODUCTS_DATA).forEach(slug => routes.push(`/products/${slug}`));
-
-// AI solution detail pages
-Object.keys(AI_SOLUTIONS_DATA).forEach(slug => routes.push(`/ai-solutions/${slug}`));
-
-// Get More Customers detail pages
-Object.keys(GET_MORE_CUSTOMERS_DATA).forEach(slug => routes.push(`/get-more-customers/${slug}`));
-
-// Service detail pages
-Object.keys(SERVICES_DATA_NEW).forEach(slug => routes.push(`/services/${slug}`));
-
-// Blog posts
-if (blogPosts) {
-  blogPosts.forEach(post => {
-    routes.push(`/blog/${post.slug || post.title.toLowerCase().replace(/\s+/g, '-')}`);
-  });
-}
-
-// Portfolio case studies
-['01', '02', '03', '04', '05', '06'].forEach(id => routes.push(`/portfolio/${id}`));
-
-// Growth guides
-if (GROWTH_GUIDES) {
-  GROWTH_GUIDES.forEach(guide => routes.push(`/grow/${guide.slug}`));
-}
-
-// Niche pages
-if (COMPARISON_PAGES) {
-  COMPARISON_PAGES.forEach(page => routes.push(`/compare/${page.slug}`));
-}
-if (RECOVERY_PAGES) {
-  RECOVERY_PAGES.forEach(page => routes.push(`/recover/${page.slug}`));
-}
-if (OFFSHORE_PAGES) {
-  OFFSHORE_PAGES.forEach(page => routes.push(`/hire/${page.slug}`));
-}
-if (TECH_STACK_PAGES) {
-  TECH_STACK_PAGES.forEach(page => routes.push(`/tech/${page.slug}`));
-}
-if (INDUSTRY_PAGES) {
-  INDUSTRY_PAGES.forEach(page => routes.push(`/industry/${page.industrySlug}/${page.countrySlug}`));
-}
+// Only render the core and main category landing pages via Puppeteer.
+// The thousands of blog posts, growth guides, and niche pages are already perfectly pre-rendered by prerender.js.
 
 // ──────────────────────────────────────────────────────────────────────────
 // Static server — serves dist/ with SPA fallback
