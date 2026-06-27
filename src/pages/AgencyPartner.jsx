@@ -55,9 +55,9 @@ const CIRCLE_SCREENSHOTS = [
 ];
 
 const COFOUND_SCREENSHOTS = [
-  { src: '/screenshots/circle-login.png', label: 'Discover Matching UI' },
-  { src: '/screenshots/circle-dashboard.png', label: 'Vetting Onboarding' },
-  { src: '/screenshots/circle-tasks.png', label: 'Job Board & Roles' }
+  { src: '/screenshots/cofound-landing.png', label: 'Discover Matching UI' },
+  { src: '/screenshots/cofound-onboarding.png', label: 'Vetting Onboarding' },
+  { src: '/screenshots/cofound-discover.png', label: 'Job Board & Roles' }
 ];
 
 export default function AgencyPartner() {
