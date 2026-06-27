@@ -687,10 +687,10 @@ const Home = ({ cityName = '', cityCategory = '', cityData = null }) => {
   const displayCategory = cityCategory || cityData?.category || '';
   const seoTitle = cityData?.metaTitle || (isCityLanding
     ? `${displayCategory} in ${cityName} | CodeHTML`
-    : `CodeHTML | ${countryName === 'India' ? 'India' : countryName === 'the UK' ? 'UK' : countryName === 'the USA' ? 'USA' : countryName === 'Singapore' ? 'Singapore' : 'Dubai'}'s Premium Website Design & Mobile App Development Company`);
+    : `CodeHTML | Premium Custom Software & Web Development Studio`);
   const seoDescription = cityData?.metaDesc || cityData?.intro || (isCityLanding
     ? `Professional ${displayCategory.toLowerCase()} and custom development built for elite businesses in ${cityName}.`
-    : `CodeHTML is ${countryName === 'India' ? 'India' : countryName === 'the UK' ? 'the UK' : countryName === 'the USA' ? 'the USA' : countryName === 'Singapore' ? 'Singapore' : 'Dubai'}'s premium custom website design and mobile app development company. We build high-performance business websites, online stores, Android/iOS mobile apps, and custom software systems.`);
+    : `CodeHTML is a premium custom website design and mobile app development company based in Dubai. We build high-performance business websites, online stores, Android/iOS mobile apps, and custom software systems. 118+ platforms delivered worldwide.`);
   
   const seoKeywords = isCityLanding
     ? [

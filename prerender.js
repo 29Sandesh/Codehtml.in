@@ -150,6 +150,11 @@ function prerenderPage(urlPath, seoData, contentHtml) {
   html = html.replace(/<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:description" content="${description}" />`);
   html = html.replace(/<meta\s+property="twitter:description"\s+content="[^"]*"\s*\/?>/i, `<meta property="twitter:description" content="${description}" />`);
 
+  // 3. Robots / Noindex
+  if (seoData.noindex) {
+    html = html.replace(/<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/i, `<meta name="robots" content="noindex, nofollow" />`);
+  }
+
 
   // 4. URLs
   if (html.match(/<link\s+rel="canonical"/i)) {
@@ -862,7 +867,8 @@ CITY_PAGES.forEach(city => {
     {
       title: city.metaTitle || city.h1,
       description: city.metaDesc || city.intro,
-      schemaHtml: schemaHtml
+      schemaHtml: schemaHtml,
+      noindex: true
     },
     `
     <main style="padding: 60px 20px; max-width: 800px; margin: 0 auto; font-family: sans-serif; background: #000; color: #fff;">

@@ -1,31 +1,59 @@
 User-agent: *
 Allow: /
 Disallow: /data/
+Disallow: /city/
+Disallow: /area/
+Disallow: /ecommerce/
+Disallow: /whatsapp-bot/
 
 # Optimize for AI Search & Answer Engines
 User-agent: GPTBot
 Allow: /
 Disallow: /data/
+Disallow: /city/
+Disallow: /area/
+Disallow: /ecommerce/
+Disallow: /whatsapp-bot/
 
 User-agent: ChatGPT-User
 Allow: /
 Disallow: /data/
+Disallow: /city/
+Disallow: /area/
+Disallow: /ecommerce/
+Disallow: /whatsapp-bot/
 
 User-agent: OAI-SearchBot
 Allow: /
 Disallow: /data/
+Disallow: /city/
+Disallow: /area/
+Disallow: /ecommerce/
+Disallow: /whatsapp-bot/
 
 User-agent: ClaudeBot
 Allow: /
 Disallow: /data/
+Disallow: /city/
+Disallow: /area/
+Disallow: /ecommerce/
+Disallow: /whatsapp-bot/
 
 User-agent: PerplexityBot
 Allow: /
 Disallow: /data/
+Disallow: /city/
+Disallow: /area/
+Disallow: /ecommerce/
+Disallow: /whatsapp-bot/
 
 User-agent: Applebot-Extended
 Allow: /
 Disallow: /data/
+Disallow: /city/
+Disallow: /area/
+Disallow: /ecommerce/
+Disallow: /whatsapp-bot/
 
 Sitemap: https://codehtml.in/sitemap.xml
 

@@ -164,7 +164,13 @@ const SEO = ({
         "sameAs": [
           "https://codehtml.in",
           "https://www.linkedin.com/company/codehtml/",
-          "https://www.instagram.com/codehtml.in/"
+          "https://www.instagram.com/codehtml.in/",
+          "https://www.crunchbase.com/organization/codehtml",
+          "https://clutch.co/profile/codehtml",
+          "https://www.facebook.com/codehtml",
+          "https://twitter.com/codehtml",
+          "https://www.youtube.com/@codehtml",
+          "https://www.medium.com/@codehtml"
         ],
         "aggregateRating": {
           "@type": "AggregateRating",

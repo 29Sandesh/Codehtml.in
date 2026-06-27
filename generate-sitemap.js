@@ -141,16 +141,11 @@ async function generate() {
   fs.writeFileSync(path.join(publicDir, 'sitemap-static.xml'), buildSitemapXml(staticUrls), 'utf8');
   console.log(`✓ Written public/sitemap-static.xml (${staticUrls.length} URLs)`);
 
-  // 2. Cities Sitemap
+  // 2. Cities Sitemap — DEPRECATED: thin city pages removed from indexing
+  // All city pages now have noindex and are disallowed in robots.txt
   const cityUrls = [];
-  if (CITY_PAGES) {
-    CITY_PAGES.forEach(city => {
-      cityUrls.push({ path: `/${city.slug || ''}`, priority: '0.7', changefreq: 'monthly' });
-    });
-  }
-  
   fs.writeFileSync(path.join(publicDir, 'sitemap-cities.xml'), buildSitemapXml(cityUrls), 'utf8');
-  console.log(`✓ Written public/sitemap-cities.xml (${cityUrls.length} URLs)`);
+  console.log(`✓ Written public/sitemap-cities.xml (EMPTY — city pages de-indexed)`);
 
 
   // 3. Blog Sitemap
@@ -218,7 +213,6 @@ async function generate() {
   // 6. Master Sitemap Index
   const sitemapFiles = [
     'sitemap-static.xml',
-    'sitemap-cities.xml',
     'sitemap-blog.xml',
     'sitemap-growth.xml',
     'sitemap-niche.xml'

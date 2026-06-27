@@ -22,5 +22,9 @@
 /services/saas-development              /products/erp-system 301
 /services/custom-software-development   /services/corporate-websites 301
 
-# SPA fallback
-/*                                      /index.html 200
+# Admin & protected routes — SPA fallback (not prerendered)
+/admin/*                                /index.html 200
+/partner/dashboard                      /index.html 200
+
+# All other routes are served from static prerendered files in dist/
+# Netlify netlify.toml handles unmatched routes with force=false fallback
