@@ -11,12 +11,12 @@ const ServiceDetailNew = () => {
   const service = SERVICES_DATA_NEW[slug];
   const [currency] = useCurrency();
 
+  // FAQ Accordion State
+  const [openFaq, setOpenFaq] = useState(null);
+
   if (!service) {
     return <Navigate to="/services" replace />;
   }
-
-  // FAQ Accordion State
-  const [openFaq, setOpenFaq] = useState(null);
 
   const toggleFaq = (idx) => {
     setOpenFaq(openFaq === idx ? null : idx);

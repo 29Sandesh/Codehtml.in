@@ -11,11 +11,11 @@ const GetMoreCustomersDetail = () => {
   const marketing = GET_MORE_CUSTOMERS_DATA[slug];
   const [currency] = useCurrency();
 
+  const [openFaq, setOpenFaq] = useState(null);
+
   if (!marketing) {
     return <Navigate to="/get-more-customers" replace />;
   }
-
-  const [openFaq, setOpenFaq] = useState(null);
 
   const toggleFaq = (idx) => {
     setOpenFaq(openFaq === idx ? null : idx);

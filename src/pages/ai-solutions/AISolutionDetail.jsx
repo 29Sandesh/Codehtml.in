@@ -11,11 +11,11 @@ const AISolutionDetail = () => {
   const solution = AI_SOLUTIONS_DATA[slug];
   const [currency] = useCurrency();
 
+  const [openFaq, setOpenFaq] = useState(null);
+
   if (!solution) {
     return <Navigate to="/ai-solutions" replace />;
   }
-
-  const [openFaq, setOpenFaq] = useState(null);
 
   const toggleFaq = (idx) => {
     setOpenFaq(openFaq === idx ? null : idx);

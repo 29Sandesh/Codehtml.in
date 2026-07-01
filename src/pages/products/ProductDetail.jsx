@@ -11,12 +11,12 @@ const ProductDetail = () => {
   const product = PRODUCTS_DATA[slug];
   const [currency] = useCurrency();
 
+  // FAQ Accordion State
+  const [openFaq, setOpenFaq] = useState(null);
+
   if (!product) {
     return <Navigate to="/products" replace />;
   }
-
-  // FAQ Accordion State
-  const [openFaq, setOpenFaq] = useState(null);
 
   const toggleFaq = (idx) => {
     setOpenFaq(openFaq === idx ? null : idx);
