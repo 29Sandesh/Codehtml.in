@@ -122,6 +122,26 @@ export default function PartnerDashboard() {
     }
   };
 
+  const handleAcceptTerms = async (e) => {
+    e.preventDefault();
+    if (!upiInput.trim()) {
+      alert("UPI ID is required to accept terms and activate your console.");
+      return;
+    }
+
+    try {
+      await db.updatePartner(partner.email, { 
+        upiId: upiInput.trim(),
+        termsAccepted: true 
+      });
+      await refreshUser();
+      setShowTermsModal(false);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to accept terms. Please try again.");
+    }
+  };
+
   const handleCompleteProfileSubmit = async (e) => {
     e.preventDefault();
     if (!phoneInput.trim()) {
@@ -465,7 +485,7 @@ Best regards,
                   Register your UPI ID to receive direct bank payouts automatically when your referred client's project gets closed.
                 </p>
                 
-                <form onSubmit={handleAcceptTerms} className="space-y-3 mt-4">
+                <form onSubmit={handleUpdateUPI} className="space-y-3 mt-4">
                   <div>
                     <label className="block font-body text-[9px] font-bold text-zinc-500 uppercase tracking-wider mb-1">Your UPI ID</label>
                     <div className="flex gap-2">
