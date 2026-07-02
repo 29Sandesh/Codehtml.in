@@ -419,7 +419,7 @@ export default function AdminBlogEditor() {
                     </button>
                     <button
                       type="button"
-                      onClick={() => handleInsertHtml('<img src="/hero-section-img.png" alt="describe image" className="w-full h-auto rounded-xl my-4" />')}
+                      onClick={() => handleInsertHtml('<img src="/hero-section-img.webp" alt="describe image" className="w-full h-auto rounded-xl my-4" />')}
                       className="p-1 hover:bg-white text-slate-500 hover:text-slate-800 rounded transition"
                       title="Image"
                     >

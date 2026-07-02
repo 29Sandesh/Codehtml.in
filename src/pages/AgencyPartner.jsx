@@ -48,16 +48,16 @@ const STAR_PROJECTS = [
 
 // White-label Apps Screenshots
 const CIRCLE_SCREENSHOTS = [
-  { src: '/screenshots/circle-login.png', label: 'Login Screen' },
-  { src: '/screenshots/circle-dashboard.png', label: 'Client Dashboard' },
-  { src: '/screenshots/circle-tasks.png', label: 'Kanban Task Board' },
-  { src: '/screenshots/circle-hierarchy.png', label: 'Company Hierarchy' }
+  { src: '/screenshots/circle-login.webp', label: 'Login Screen' },
+  { src: '/screenshots/circle-dashboard.webp', label: 'Client Dashboard' },
+  { src: '/screenshots/circle-tasks.webp', label: 'Kanban Task Board' },
+  { src: '/screenshots/circle-hierarchy.webp', label: 'Company Hierarchy' }
 ];
 
 const COFOUND_SCREENSHOTS = [
-  { src: '/screenshots/cofound-landing.png', label: 'Discover Matching UI' },
-  { src: '/screenshots/cofound-onboarding.png', label: 'Vetting Onboarding' },
-  { src: '/screenshots/cofound-discover.png', label: 'Job Board & Roles' }
+  { src: '/screenshots/cofound-landing.webp', label: 'Discover Matching UI' },
+  { src: '/screenshots/cofound-onboarding.webp', label: 'Vetting Onboarding' },
+  { src: '/screenshots/cofound-discover.webp', label: 'Job Board & Roles' }
 ];
 
 export default function AgencyPartner() {

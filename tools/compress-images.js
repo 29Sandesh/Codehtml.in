@@ -10,12 +10,12 @@ const publicDir = path.resolve(__dirname, '../public');
 async function compress() {
   const imagesToCompress = [
     {
-      input: 'hero-img.png',
+      input: 'hero-img.webp',
       output: 'hero-img.webp',
       options: { quality: 80 }
     },
     {
-      input: 'about-section-img.png',
+      input: 'about-section-img.webp',
       output: 'about-section-img.webp',
       options: { quality: 80 }
     }

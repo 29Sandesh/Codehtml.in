@@ -131,9 +131,9 @@ const navCategories = [
     title: 'PRODUCTS',
     bgImage: '/whatsapp_realty_mockup.webp',
     items: [
-      { name: "Customer Portal", slug: "customer-portal", desc: "Secure external logins & data sharing portals for clients.", bgImage: "/customer-portal-generated.png" },
-      { name: "Supplier Portal", slug: "supplier-portal", desc: "Procurement, vendor tracking, and order dispatch pipelines.", bgImage: "/supplier-portal-generated.png" },
-      { name: "Employee Portal", slug: "employee-portal", desc: "Intranets, employee rosters, and shared company databases.", bgImage: "/employee-portal-generated.png" },
+      { name: "Customer Portal", slug: "customer-portal", desc: "Secure external logins & data sharing portals for clients.", bgImage: "/customer-portal-generated.webp" },
+      { name: "Supplier Portal", slug: "supplier-portal", desc: "Procurement, vendor tracking, and order dispatch pipelines.", bgImage: "/supplier-portal-generated.webp" },
+      { name: "Employee Portal", slug: "employee-portal", desc: "Intranets, employee rosters, and shared company databases.", bgImage: "/employee-portal-generated.webp" },
       { name: "Partner Portal", slug: "partner-portal", desc: "B2B referral tracking, dashboards, and affiliate management." },
       { name: "ERP System", slug: "erp-system", desc: "Centralized enterprise resource planning and operations control." },
       { name: "CRM System", slug: "crm-system", desc: "Sales pipelines, leads management, and customer relations CRMs." },
@@ -939,7 +939,7 @@ const Home = ({ cityName = '', cityCategory = '', cityData = null }) => {
 
 
   const getHeroBgImage = () => {
-    return '/hero-tech-bg.png';
+    return '/hero-tech-bg.webp';
   };
 
   const getHeroHeadline = () => {
