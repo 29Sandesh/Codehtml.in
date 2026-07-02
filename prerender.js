@@ -944,8 +944,7 @@ blogPosts.forEach(post => {
   prerenderPage(`/blog/${post.slug}`,
     {
       title: `${post.title} | Blog`,
-      description: post.excerpt,
-      noindex: true
+      description: post.excerpt
     },
     `
     <main style="padding: 60px 20px; max-width: 800px; margin: 0 auto; font-family: sans-serif; background: #000; color: #fff;">

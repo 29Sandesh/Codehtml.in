@@ -175,10 +175,20 @@ async function generate() {
   console.log(`✓ Written public/sitemap-cities.xml (EMPTY — city pages de-indexed)`);
 
 
-  // 3. Blog Sitemap — DEPRECATED: thin blog posts noindexed, do not submit to Google
+  // 3. Blog Sitemap — Generated for the 20 high-quality, long-form articles
   const blogUrls = [];
+  if (blogPosts) {
+    blogPosts.forEach(post => {
+      const item = {
+        path: `/blog/${post.slug || post.title.toLowerCase().replace(/\s+/g, '-')}`,
+        priority: '0.75',
+        changefreq: 'monthly'
+      };
+      blogUrls.push(item);
+    });
+  }
   fs.writeFileSync(path.join(publicDir, 'sitemap-blog.xml'), buildSitemapXml(blogUrls), 'utf8');
-  console.log(`✓ Written public/sitemap-blog.xml (EMPTY — blog posts de-indexed)`);
+  console.log(`✓ Written public/sitemap-blog.xml (${blogUrls.length} quality URLs)`);
 
   // 4. Growth Sitemap — DEPRECATED: thin growth guides noindexed, do not submit to Google
   const growthUrls = [];
