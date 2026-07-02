@@ -9,7 +9,7 @@ const SEO = ({
   title, 
   description, 
   image = 'https://codehtml.in/hero-section-img.webp',
-  imageAlt = 'CodeHTML — Premium Custom Software & Web Development Studio',
+  imageAlt = 'CodeHTML — Premium Custom Software Development Studio',
   type = 'website',
   schema,
   noindex = false,
@@ -98,10 +98,64 @@ const SEO = ({
       "@id": "https://codehtml.in/#website",
       "url": "https://codehtml.in",
       "name": "CodeHTML",
-      "description": "Premium custom software development, React web applications, custom SaaS platforms, and mobile apps studio.",
+      "description": "Premium custom software development, custom SaaS platforms, database portals, and mobile applications studio.",
       "inLanguage": "en-US",
       "publisher": { "@id": "https://codehtml.in/#organization" }
     });
+
+    // SiteNavigationElement list to guide Google on sitelinks heading text and order
+    if (isHomepage) {
+      graphElements.push({
+        "@type": "ItemList",
+        "@id": "https://codehtml.in/#navigationlist",
+        "name": "Site Navigation",
+        "numberOfItems": 6,
+        "itemListElement": [
+          {
+            "@type": "SiteNavigationElement",
+            "position": 1,
+            "name": "Custom Software Services",
+            "description": "Premium custom software development, databases, and enterprise portal engineering.",
+            "url": "https://codehtml.in/services"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 2,
+            "name": "Custom Software Products",
+            "description": "Ready-to-deploy custom ERPs, CRM software systems, and booking systems.",
+            "url": "https://codehtml.in/products"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 3,
+            "name": "AI Solutions & Bots",
+            "description": "Intelligent AI voice agents, smart assistants, and automated chat workflows.",
+            "url": "https://codehtml.in/ai-solutions"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 4,
+            "name": "Studio Pricing Plans",
+            "description": "Bespoke development packages with 100% intellectual property ownership.",
+            "url": "https://codehtml.in/pricing"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 5,
+            "name": "Agency Partner Program",
+            "description": "Refer clients, earn high commission payouts, and get direct developer access.",
+            "url": "https://codehtml.in/partner"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 6,
+            "name": "Our Portfolio Showcase",
+            "description": "Explore our premium live projects and sub-second performance audits.",
+            "url": "https://codehtml.in/portfolio"
+          }
+        ]
+      });
+    }
 
     graphElements.push({
       "@type": "WebPage",
@@ -129,7 +183,7 @@ const SEO = ({
           "height": 60
         },
         "image": image,
-        "description": "CodeHTML is a premium digital engineering studio. We build elite custom websites, web apps, custom SaaS platforms, and iOS & Android mobile applications.",
+        "description": "CodeHTML is a premium custom software development studio. We build elite custom software, database portals, custom SaaS platforms, and mobile applications.",
         "telephone": "+919303228082",
         "email": "Contact@Codehtml.in",
         "priceRange": "$$$",

@@ -687,10 +687,10 @@ const Home = ({ cityName = '', cityCategory = '', cityData = null }) => {
   const displayCategory = cityCategory || cityData?.category || '';
   const seoTitle = cityData?.metaTitle || (isCityLanding
     ? `${displayCategory} in ${cityName} | CodeHTML`
-    : `CodeHTML | Premium Custom Software & Web Development Studio`);
+    : `CodeHTML | Premium Custom Software Development Studio`);
   const seoDescription = cityData?.metaDesc || cityData?.intro || (isCityLanding
     ? `Professional ${displayCategory.toLowerCase()} and custom development built for elite businesses in ${cityName}.`
-    : `CodeHTML is a premium custom website design and mobile app development company based in Dubai. We build high-performance business websites, online stores, Android/iOS mobile apps, and custom software systems. 118+ platforms delivered worldwide.`);
+    : `CodeHTML is a premium custom software development company based in Dubai. We engineer high-performance database portals, custom SaaS platforms, online stores, Android/iOS mobile applications, and elite business websites. 118+ systems delivered worldwide.`);
   
   const seoKeywords = isCityLanding
     ? [
@@ -1003,7 +1003,7 @@ const Home = ({ cityName = '', cityCategory = '', cityData = null }) => {
               <div className="relative bg-zinc-950/80 border border-white/10 p-2 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-sm">
                 <img 
                   src="/hero-img.webp" 
-                  alt={isCityLanding ? `CodeHTML - Custom ${displayCategory} in ${cityName}` : "CodeHTML - Custom Software & Web Development Studio"} 
+                  alt={isCityLanding ? `CodeHTML - Custom ${displayCategory} in ${cityName}` : "CodeHTML - Custom Software Development Studio"} 
                   className="w-full h-auto object-cover rounded-xl"
                   loading="eager"
                   fetchpriority="high"
@@ -1196,7 +1196,7 @@ const Home = ({ cityName = '', cityCategory = '', cityData = null }) => {
               <div className="relative bg-zinc-950 p-2 border border-white/5 rounded-none shadow-2xl">
                 <img 
                   src="/about-section-img.webp" 
-                  alt={isCityLanding ? `Premium ${displayCategory} Studio in ${cityName} - CodeHTML` : "CodeHTML - Premium Web Development and Custom Software Studio"} 
+                  alt={isCityLanding ? `Premium ${displayCategory} Studio in ${cityName} - CodeHTML` : "CodeHTML - Premium Custom Software Development Studio"} 
                   className="w-full h-auto object-cover rounded-none"
                   loading="lazy"
                   decoding="async"

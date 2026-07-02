@@ -42,7 +42,23 @@ const staticRoutes = [
   '/dubai-mobile-app-development',
   '/app-developer-near-me-dubai',
   '/about-codehtml',
-  '/html-development-services'
+  '/html-development-services',
+
+  // Swigato-Style Dubai City Pages
+  '/dubai-web-development-marina',
+  '/dubai-web-development-jlt',
+  '/dubai-web-development-difc',
+  '/dubai-web-development-downtown',
+  '/dubai-web-development-jumeirah',
+  '/dubai-web-development-deira',
+  '/dubai-web-development-internet-city',
+  '/dubai-web-development-silicon-oasis',
+  '/dubai-web-development-al-barsha',
+
+  // Swigato-Style UK City Pages
+  '/web-development-london',
+  '/web-development-manchester',
+  '/web-development-birmingham'
 ];
 
 function buildSitemapXml(urls) {

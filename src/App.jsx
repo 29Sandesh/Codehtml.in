@@ -85,6 +85,22 @@ const CaseStudySLCC = lazy(() => import('./pages/CaseStudySLCC'))
 const AboutCodeHTML = lazy(() => import('./pages/AboutCodeHTML'))
 const HTMLDevelopmentServices = lazy(() => import('./pages/HTMLDevelopmentServices'))
 
+// Swigato-style city pages — Dubai neighborhoods
+const DubaiWebDevelopmentMarina = lazy(() => import('./pages/DubaiWebDevelopmentMarina'))
+const DubaiWebDevelopmentJLT = lazy(() => import('./pages/DubaiWebDevelopmentJLT'))
+const DubaiWebDevelopmentDIFC = lazy(() => import('./pages/DubaiWebDevelopmentDIFC'))
+const DubaiWebDevelopmentDowntown = lazy(() => import('./pages/DubaiWebDevelopmentDowntown'))
+const DubaiWebDevelopmentJumeirah = lazy(() => import('./pages/DubaiWebDevelopmentJumeirah'))
+const DubaiWebDevelopmentDeira = lazy(() => import('./pages/DubaiWebDevelopmentDeira'))
+const DubaiWebDevelopmentInternetCity = lazy(() => import('./pages/DubaiWebDevelopmentInternetCity'))
+const DubaiWebDevelopmentSiliconOasis = lazy(() => import('./pages/DubaiWebDevelopmentSiliconOasis'))
+const DubaiWebDevelopmentAlBarsha = lazy(() => import('./pages/DubaiWebDevelopmentAlBarsha'))
+
+// Swigato-style city pages — UK cities
+const WebDevelopmentLondon = lazy(() => import('./pages/WebDevelopmentLondon'))
+const WebDevelopmentManchester = lazy(() => import('./pages/WebDevelopmentManchester'))
+const WebDevelopmentBirmingham = lazy(() => import('./pages/WebDevelopmentBirmingham'))
+
 // Component to scroll window to top on route change and persist referral codes
 function ScrollToTop() {
   const { pathname, search } = useLocation();
@@ -325,6 +341,22 @@ function App() {
                 <Route path="/case-study/slcc" element={<CaseStudySLCC />} />
                 <Route path="/about-codehtml" element={<AboutCodeHTML />} />
                 <Route path="/html-development-services" element={<HTMLDevelopmentServices />} />
+                
+                {/* Swigato-Style City Pages — Dubai Neighborhoods */}
+                <Route path="/dubai-web-development-marina" element={<DubaiWebDevelopmentMarina />} />
+                <Route path="/dubai-web-development-jlt" element={<DubaiWebDevelopmentJLT />} />
+                <Route path="/dubai-web-development-difc" element={<DubaiWebDevelopmentDIFC />} />
+                <Route path="/dubai-web-development-downtown" element={<DubaiWebDevelopmentDowntown />} />
+                <Route path="/dubai-web-development-jumeirah" element={<DubaiWebDevelopmentJumeirah />} />
+                <Route path="/dubai-web-development-deira" element={<DubaiWebDevelopmentDeira />} />
+                <Route path="/dubai-web-development-internet-city" element={<DubaiWebDevelopmentInternetCity />} />
+                <Route path="/dubai-web-development-silicon-oasis" element={<DubaiWebDevelopmentSiliconOasis />} />
+                <Route path="/dubai-web-development-al-barsha" element={<DubaiWebDevelopmentAlBarsha />} />
+                
+                {/* Swigato-Style City Pages — UK Cities */}
+                <Route path="/web-development-london" element={<WebDevelopmentLondon />} />
+                <Route path="/web-development-manchester" element={<WebDevelopmentManchester />} />
+                <Route path="/web-development-birmingham" element={<WebDevelopmentBirmingham />} />
                 
                 {/* Locations Page */}
                 <Route path="/locations" element={<Locations />} />

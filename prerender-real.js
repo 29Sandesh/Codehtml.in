@@ -59,6 +59,22 @@ const routes = [
   '/case-study/alaya-realty',
   '/case-study/slcc',
 
+  // Swigato-Style Dubai City Pages
+  '/dubai-web-development-marina',
+  '/dubai-web-development-jlt',
+  '/dubai-web-development-difc',
+  '/dubai-web-development-downtown',
+  '/dubai-web-development-jumeirah',
+  '/dubai-web-development-deira',
+  '/dubai-web-development-internet-city',
+  '/dubai-web-development-silicon-oasis',
+  '/dubai-web-development-al-barsha',
+
+  // Swigato-Style UK City Pages
+  '/web-development-london',
+  '/web-development-manchester',
+  '/web-development-birmingham',
+
   // Category overview pages
   '/products',
   '/ai-solutions',
