@@ -1,2 +1,6 @@
-# Netlify Redirects for React Router and SEO Files
-/* /index.html 200
+# Netlify Redirects — Only SPA fallback for dynamic client-side routes
+# Static prerendered files are served directly by Netlify (no override)
+
+/admin/*          /index.html    200
+/partner/*        /index.html    200
+/contact          /index.html    200

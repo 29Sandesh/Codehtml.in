@@ -135,8 +135,8 @@ function getCommunityLink(commName, serviceSlug) {
 function prerenderPage(urlPath, seoData, contentHtml) {
   let html = template;
 
-  const title = seoData.title ? (seoData.title.includes('CodeHTML') ? seoData.title : `${seoData.title} | CodeHTML`) : "CodeHTML | Dubai's Premium Custom Software & Web Studio";
-  const description = seoData.description || "CodeHTML is Dubai's premium custom software and web development studio. We build custom React websites, B2B dashboards, SaaS engines, mobile apps, and enterprise tools.";
+  const title = seoData.title ? (seoData.title.includes('CodeHTML') ? seoData.title : `${seoData.title} | CodeHTML`) : "CodeHTML | Premium Custom Software Development Studio";
+  const description = seoData.description || "CodeHTML is a premium custom software development studio based in Dubai. We engineer database portals, custom SaaS platforms, mobile applications, and elite business websites.";
   const keywords = seoData.keywords || 'web design, website development, saas development, mobile apps, custom software, dubai';
   const canonicalUrl = `https://codehtml.in${urlPath === '/' ? '' : urlPath}`;
 
@@ -909,7 +909,8 @@ GROWTH_GUIDES.forEach(guide => {
   prerenderPage(`/grow/${guide.slug}`,
     {
       title: guide.metaTitle,
-      description: guide.metaDesc
+      description: guide.metaDesc,
+      noindex: true
     },
     `
     <main style="padding: 60px 20px; max-width: 800px; margin: 0 auto; font-family: sans-serif; background: #000; color: #fff;">
@@ -943,7 +944,8 @@ blogPosts.forEach(post => {
   prerenderPage(`/blog/${post.slug}`,
     {
       title: `${post.title} | Blog`,
-      description: post.excerpt
+      description: post.excerpt,
+      noindex: true
     },
     `
     <main style="padding: 60px 20px; max-width: 800px; margin: 0 auto; font-family: sans-serif; background: #000; color: #fff;">

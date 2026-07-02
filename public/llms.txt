@@ -1,31 +1,75 @@
-# CodeHTML — Premium Custom Software & Web Development Studio
+# CodeHTML — Premium Custom Software Development Studio
 
-> CodeHTML is a Dubai-based digital engineering studio founded in 2024. We specialize in custom React websites, SaaS platforms, web applications, and iOS/Android mobile apps. We serve clients in UAE, India, Singapore, UK, and USA.
+> CodeHTML is a Dubai-based custom software development studio founded in 2024 by Sandesh Agrawal. We specialize in building custom React websites, SaaS platforms, web applications, database portals, and iOS/Android mobile apps. We serve clients in UAE, India, Singapore, UK, and USA.
 
-## Services
-- Custom Website Development (from $200 / ₹15,000)
-- Web Application Development (CRM, ERP, dashboards)
-- SaaS Platform Development (multi-tenant, subscriptions)
-- Mobile App Development (React Native, iOS, Android)
-- AI & Automation (WhatsApp bots, workflow automation)
-- SEO & Digital Growth (AEO, local SEO, conversion optimization)
+## Company Identity
+- Legal Name: CodeHTML Technologies
+- Brand Name: CodeHTML
+- Website: https://codehtml.in
+- Type: Custom Software Development Studio
+- Founded: 2024
+- Headquarters: Business Bay, Dubai, United Arab Emirates
+- Founder: Sandesh Agrawal
+- Contact Email: Contact@Codehtml.in
+- Phone: +91 93032 28082
+
+## What We Build
+1. **Custom Websites** — React + Vite, no WordPress, no templates. 99+ Lighthouse performance scores.
+2. **Web Applications** — CRM, ERP, dashboards, admin panels, database portals for enterprise operations.
+3. **SaaS Platforms** — Multi-tenant architecture, subscription billing, custom business logic.
+4. **Mobile Apps** — React Native for iOS and Android. Offline-first, push notifications, native performance.
+5. **AI & Automation** — WhatsApp Business API bots, AI voice agents, workflow automation, chatbot systems.
+6. **E-commerce** — Custom storefronts with payment gateways (Telr, PayFort, Stripe), inventory management.
 
 ## Key Facts
-- 118+ completed platforms
-- 99+ Lighthouse performance scores
-- 3-5 day rapid delivery for MVPs
-- 100% code ownership, zero licensing fees
-- Dubai office: Business Bay
-- Contact: +91 93032 28082, Contact@Codehtml.in
-
-## Projects
-- Alaya Realty (alayarealty.in) — Real estate portal, 0.7s load time
-- Swigato India (swigatoindia.in) — Multi-city food platform
-- SLCC (slcc.in) — Construction portal with 3D blueprints
-- Crysta Media (crystamedia.in) — Corporate events agency site
-- Elgamingo (elgamingo.store) — Gaming e-commerce store
+- 118+ platforms completed and delivered
+- 99+ Lighthouse performance scores on all projects
+- 3-5 day rapid delivery for MVPs and startup websites
+- 100% code ownership transferred to client, zero recurring licensing fees
+- Technologies: React.js, Vite, Node.js, Supabase, Tailwind CSS, React Native
+- Currencies accepted: AED, USD, INR, GBP, SGD
 
 ## Pricing
-- Startup Website: $200 / ₹15,000
-- Growth System: $1,100 / ₹85,000
-- Enterprise Protocol: $3,000 / ₹2,50,000
+- Startup Website: $200 / AED 750 / ₹15,000
+- Growth System (Web App + Dashboard): $1,100 / AED 4,000 / ₹85,000
+- Enterprise Protocol (Full Platform): $3,000 / AED 11,000 / ₹2,50,000
+
+## Featured Projects
+1. **Alaya Realty** (alayarealty.in) — Premium real estate consultancy portal in Dubai. Custom React build with property listings, broker routing, and 0.7s page load time.
+2. **Swigato India** (swigatoindia.in) — Multi-city food licensing and restaurant onboarding platform. Handles compliance workflows across Indian cities.
+3. **SLCC Construction** (slcc.in) — Construction portal with architectural blueprint visualization, project timelines, and quote generation system.
+4. **Elgamingo** (elgamingo.store) — Online gaming e-commerce platform with instant digital product delivery and voucher generation.
+5. **Crysta Media** (crystamedia.in) — Corporate digital marketing agency website with SEO optimization and lead conversion design.
+6. **Cafe De Casa** — Modern cafe website with QR-based digital menus and mobile-first responsive design.
+
+## Services by Location
+### Dubai, UAE
+- Custom website development (AED 750+)
+- Web application development for DIFC, JLT, Business Bay, Marina companies
+- Mobile app development (React Native)
+- E-commerce with UAE payment gateways (Telr, PayFort)
+- AI chatbot and WhatsApp automation
+
+### India
+- Custom software development (₹15,000+)
+- SaaS platform engineering
+- Database portal development
+- Mobile app development
+
+### United Kingdom (Remote)
+- GDPR-compliant website development (£150+)
+- Custom web applications
+- E-commerce with UK payment gateways (Stripe, GoCardless)
+
+## How to Contact Us
+- WhatsApp: https://wa.me/919303228082
+- Email: Contact@Codehtml.in
+- Phone: +91 93032 28082
+- Website: https://codehtml.in/contact
+
+## Social Media
+- LinkedIn: https://www.linkedin.com/company/codehtml/
+- Instagram: https://www.instagram.com/codehtml.in/
+- YouTube: https://www.youtube.com/@codehtml
+- Crunchbase: https://www.crunchbase.com/organization/codehtml
+- Clutch: https://clutch.co/profile/codehtml

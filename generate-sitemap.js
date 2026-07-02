@@ -175,37 +175,15 @@ async function generate() {
   console.log(`✓ Written public/sitemap-cities.xml (EMPTY — city pages de-indexed)`);
 
 
-  // 3. Blog Sitemap
+  // 3. Blog Sitemap — DEPRECATED: thin blog posts noindexed, do not submit to Google
   const blogUrls = [];
-  if (blogPosts) {
-    blogPosts.forEach(post => {
-      const item = {
-        path: `/blog/${post.slug || post.title.toLowerCase().replace(/\s+/g, '-')}`,
-        priority: '0.7',
-        changefreq: 'monthly'
-      };
-      if (post.featuredImage) {
-        item.images = [{
-          loc: post.featuredImage,
-          title: post.title,
-          caption: post.excerpt || post.title
-        }];
-      }
-      blogUrls.push(item);
-    });
-  }
   fs.writeFileSync(path.join(publicDir, 'sitemap-blog.xml'), buildSitemapXml(blogUrls), 'utf8');
-  console.log(`✓ Written public/sitemap-blog.xml (${blogUrls.length} URLs)`);
+  console.log(`✓ Written public/sitemap-blog.xml (EMPTY — blog posts de-indexed)`);
 
-  // 4. Growth Sitemap
+  // 4. Growth Sitemap — DEPRECATED: thin growth guides noindexed, do not submit to Google
   const growthUrls = [];
-  if (GROWTH_GUIDES) {
-    GROWTH_GUIDES.forEach(guide => {
-      growthUrls.push({ path: `/grow/${guide.slug}`, priority: '0.8', changefreq: 'monthly' });
-    });
-  }
   fs.writeFileSync(path.join(publicDir, 'sitemap-growth.xml'), buildSitemapXml(growthUrls), 'utf8');
-  console.log(`✓ Written public/sitemap-growth.xml (${growthUrls.length} URLs)`);
+  console.log(`✓ Written public/sitemap-growth.xml (EMPTY — growth guides de-indexed)`);
 
   // 5. Niche Sitemap
   const nicheUrls = [];
